@@ -1,0 +1,6 @@
+server: mongodb
+role_name: mongodb
+systemd_app_name: mongod
+app_install:
+  - { name: "mongodb-org" , version: ""}
+repo_name: mongo

@@ -1,0 +1,37 @@
+- name: Configuring "{{ microservice_name }}"
+  ansible.builtin.debug:
+    msg: Building "{{ microservice_name }}" microservice
+
+- name: Install dnf dependencies
+  ansible.builtin.import_role:
+    name: dnf_modules
+    tasks_from: main.yml
+
+- name: Create all Users
+  ansible.builtin.import_role:
+    name: create_user
+    tasks_from: main.yml
+
+- name: Create Directory
+  ansible.builtin.import_role:
+    name: create_directory
+    tasks_from: main.yml
+
+- name: Unzip the file
+  ansible.builtin.unarchive:
+    src: https://roboshop-artifacts.s3.amazonaws.com/payment-v3.zip
+    dest: "{{ directory_path }}"
+    remote_src: yes
+
+- name: Execute the command pip3 install
+  ansible.builtin.shell: cd "{{ directory_path }}" ; pip3 install -r requirements.txt
+
+- name: copy service file
+  ansible.builtin.template:
+    src: payment.service
+    dest: /etc/systemd/system/payment.service
+
+- name: Systemd service start
+  ansible.builtin.import_role:
+    name: systemd
+    tasks_from: main.yml

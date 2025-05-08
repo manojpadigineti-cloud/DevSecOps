@@ -1,0 +1,9 @@
+- name: Create a user 'Roboshop' with a home directory
+  ansible.builtin.user:
+    name: "{{ item }}"
+    home: "/home/{{ item }}"
+    create_home: yes
+    shell: /bin/bash
+    state: present
+  loop: "{{ user }}"
+

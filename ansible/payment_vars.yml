@@ -1,0 +1,16 @@
+role_name: payment
+server: payment
+microservice_name: "payment"
+app_install:
+  - { name: "python3 " , version: "" }
+  - { name: "gcc" , version: "" }
+  - { name: "python3-devel" , version: "" }
+user:
+  - "roboshop"
+  - "roboshop123"
+directory_path: "/app"
+dir_owner: "roboshop"
+cart_ip: "cart.manojpadigineti.cloud"
+user_ip: "user.manojpadigineti.cloud"
+rabbitmq_ip: "rabbitmq.manojpadigineti.cloud"
+systemd_app_name: "payment"

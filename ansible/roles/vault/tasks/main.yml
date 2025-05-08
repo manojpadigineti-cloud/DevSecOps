@@ -1,0 +1,23 @@
+- name: Copy hashicorp_repo
+  ansible.builtin.import_role:
+    name: repo_copy
+    tasks_from: main.yml
+
+- name: install vault using dnf
+  ansible.builtin.import_role:
+    name: dnf_modules
+    tasks_from: main.yml
+
+- name: remove existing vault.hcl
+  ansible.builtin.shell:
+    cmd: "rm -rf /etc/vault.d/vault.hcl ; pip install hvac"
+
+- name: Template a file to /etc/file.conf
+  ansible.builtin.template:
+    src: vault.hcl
+    dest: /etc/vault.d/
+
+- name: systemd start vault
+  ansible.builtin.import_role:
+    name: systemd
+    tasks_from: main.yml

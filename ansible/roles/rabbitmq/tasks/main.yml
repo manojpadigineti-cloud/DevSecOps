@@ -1,0 +1,17 @@
+- name: Import rabbotmq repo_copy role
+  ansible.builtin.import_role:
+    name: repo_copy
+    tasks_from: main.yml
+
+- name: Import dnf_module to install rabbitmq-server
+  ansible.builtin.import_role:
+    name: dnf_modules
+    tasks_from: main.yml
+
+- name: Import systemd to start rabbitmq service
+  ansible.builtin.import_role:
+    name: systemd
+    tasks_from: main.yml
+
+- name: Execute rabbitmqctl commands
+  ansible.builtin.shell: rabbitmqctl add_user roboshop roboshop123 ; rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*"

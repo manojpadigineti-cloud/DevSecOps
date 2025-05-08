@@ -1,0 +1,39 @@
+- name: Configuring "{{ microservice_name }}"
+  ansible.builtin.debug:
+    msg: Building "{{ microservice_name }}" microservice
+
+- name: Import dnf_installation
+  ansible.builtin.import_role:
+    name: dnf_modules
+    tasks_from: main.yml
+
+- name: User creation
+  ansible.builtin.import_role:
+    name: create_user
+    tasks_from: main.yml
+
+- name: Directory creation
+  ansible.builtin.import_role:
+    name: create_directory
+    tasks_from: main.yml
+
+- name: Download and untar the files
+  ansible.builtin.unarchive:
+    src: https://roboshop-artifacts.s3.amazonaws.com/cart-v3.zip
+    dest: "{{ directory_path }}"
+    remote_src: yes
+
+- name: Copy user service file
+  ansible.builtin.template:
+    src: cart.service
+    dest: /etc/systemd/system/cart.service
+
+- name: Execute NPM Install Command
+  ansible.builtin.shell: npm install
+  args:
+    chdir: "{{ directory_path }}"
+
+- name: systemd start service
+  ansible.builtin.import_role:
+    name: systemd
+    tasks_from: main.yml

@@ -1,0 +1,4 @@
+- name: Copy repos to /etc/yum.repos.d
+  ansible.builtin.copy:
+    src: "{{repo_name}}.repo"
+    dest: "/etc/yum.repos.d/{{repo_name}}.repo"

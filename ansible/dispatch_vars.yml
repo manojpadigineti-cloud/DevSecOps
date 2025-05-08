@@ -1,0 +1,15 @@
+role_name: "dispatch"
+server: "dispatch"
+microservice_name: "dispatch"
+app_install:
+  - { name: "golang", version: ""}
+user:
+  - "roboshop"
+directory_path: "/app"
+dir_owner: "roboshop"
+go_script:
+  - "go mod init dispatch"
+  - "go get"
+  - "go build"
+rabbitmq_ip: "rabbitmq.manojpadigineti.cloud"
+systemd_app_name: "dispatch"

@@ -1,0 +1,7 @@
+role_name: "mysql"
+server: "mysql"
+microservice_name: "mysql"
+app_install:
+  - { name: "mysql-server", version : "" }
+systemd_app_name: "mysqld"
+roboshop_password: "RoboShop@1"

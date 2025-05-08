@@ -1,0 +1,7 @@
+server: redis
+role_name: redis
+disable_enable_app: "redis"
+enable_app_version: "7"
+app_install:
+  - { name: "redis" , version: "" }
+systemd_app_name: "redis"

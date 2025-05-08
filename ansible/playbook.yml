@@ -1,0 +1,12 @@
+- name: Ansible Playbook
+  hosts: localhost
+  connection: local
+  become: true
+  vars:
+    var_file: "{{ var_file }}"
+  vars_files:
+   - "{{ var_file }}_vars.yml"
+  roles:
+    - "{{ role_name }}"
+
+# git pull ; ansible-playbook -i inv.txt playbook.yml -e var_file=frontend

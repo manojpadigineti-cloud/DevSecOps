@@ -1,0 +1,18 @@
+- name: Import dnf_installation
+  ansible.builtin.import_role:
+    name: dnf_modules
+    tasks_from: main.yml
+
+- name: Replace IP and protected mode
+  ansible.builtin.replace:
+    path: /etc/redis/redis.conf
+    regexp: "{{ item.before }}"
+    replace: "{{ item.after }}"
+  loop:
+    - { before: "127.0.0.1", after: "0.0.0.0" }
+    - { before: "protected-mode yes", after: "protected-mode no" }
+
+- name: Systemd start redis
+  ansible.builtin.import_role:
+    name: systemd
+    tasks_from: main.yml

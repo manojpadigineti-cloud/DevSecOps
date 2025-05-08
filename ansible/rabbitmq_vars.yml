@@ -1,0 +1,6 @@
+role_name: rabbitmq
+server: rabbitmq
+repo_name: rabbitmq
+app_install:
+  - { name: "rabbitmq-server", version: ""}
+systemd_app_name: "rabbitmq-server"

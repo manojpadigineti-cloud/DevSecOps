@@ -1,0 +1,5 @@
+repo_name: "hashicorp"
+app_install:
+  - { name: "vault" , version: "" }
+systemd_app_name: "vault"
+role_name: "vault"

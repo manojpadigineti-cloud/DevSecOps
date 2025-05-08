@@ -1,0 +1,102 @@
+- name: Configuring "{{ microservice_name }}"
+  ansible.builtin.debug:
+    msg: Building "{{ microservice_name }}" microservice
+
+- name: Install dnf dependencies
+  ansible.builtin.import_role:
+    name: dnf_modules
+    tasks_from: main.yml
+
+- name: Create User
+  ansible.builtin.import_role:
+    name: create_user
+    tasks_from: main.yml
+
+- name: Create Directory
+  ansible.builtin.import_role:
+    name: create_directory
+    tasks_from: main.yml
+
+- name: Untar project packages
+  ansible.builtin.unarchive:
+    src: https://roboshop-artifacts.s3.amazonaws.com/dispatch-v3.zip
+    dest: "{{ directory_path }}"
+    remote_src: yes
+
+- name: Execute go script
+  ansible.builtin.shell: "{{ item }}"
+  args:
+    chdir: "{{ directory_path }}"
+  loop: "{{ go_script }}"
+
+- name: Copy systemd dispatch service
+  ansible.builtin.template:
+    src: dispatch.service
+    dest: /etc/systemd/system/dispatch.service
+
+- name: Start systemd service for dispatch
+  ansible.builtin.import_role:
+    name: systemd
+    tasks_from: main.yml
+
+
+
+
+
+
+
+#- name: Configuring "{{ microservice_name }}"
+#  ansible.builtin.debug:
+#    msg: Building "{{ microservice_name }}" microservice
+#
+#- name: Install dnf dependencies
+#  ansible.builtin.import_role:
+#    name: dnf_modules
+#    tasks_from: main.yml
+#  become: true
+#
+#- name: Create User
+#  ansible.builtin.import_role:
+#    name: create_user
+#    tasks_from: main.yml
+#  become: true
+#
+#- name: Ensure ~/.cache exists and has correct permissions
+#  ansible.builtin.file:
+#    path: "/home/{{ dir_owner }}/.cache"
+#    state: directory
+#    owner: "{{ dir_owner }}"
+#    group: "{{ dir_owner }}"
+#    mode: '0755'
+#    recurse: yes
+#  become: yes
+#
+#- name: Execute permissions to user
+#  ansible.builtin.shell: "chown -R {{ dir_owner }}:{{ dir_owner }} /home/{{ dir_owner }} ; chmod -R 777 /home/{{ dir_owner }}"
+#
+#- name: Create Directory
+#  ansible.builtin.import_role:
+#    name: create_directory
+#    tasks_from: main.yml
+#
+#- name: Copy service file
+#  ansible.builtin.template:
+#    src: dispatch.service
+#    dest: /etc/systemd/system/dispatch.service
+#
+#- name: Unzip files
+#  ansible.builtin.unarchive:
+#    src: https://roboshop-artifacts.s3.amazonaws.com/dispatch-v3.zip
+#    dest: "{{ directory_path }}"
+#    remote_src: yes
+#  become: true
+#
+#- name: Execute go commands
+#  ansible.builtin.shell: "cd {{ directory_path }} ; {{ item }}"
+#  loop: "{{ execute_go }}"
+#  become_user: "{{ dir_owner }}"
+#
+#- name: create systemd service
+#  ansible.builtin.import_role:
+#    name: systemd
+#    tasks_from: main.yml
