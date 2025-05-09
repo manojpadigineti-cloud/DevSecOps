@@ -39,6 +39,7 @@
   become_user: github-runner
   args:
     chdir: /actions-runner
+  ignore_errors: yes
 
 - name: Copy service file
   ansible.builtin.copy:
