@@ -1,0 +1,47 @@
+- name: Run tasks/other.yaml instead of 'main'
+  ansible.builtin.import_role:
+    name: create_user
+    tasks_from: main.yml
+
+- name: create a directory /actions-runner
+  ansible.builtin.file:
+    path: /actions-runner
+    state: director
+    owner: github-runner
+    group: github-runner
+    mode: '0744'
+
+- name: Extract the github-runner file
+  ansible.builtin.unarchive:
+    src: https://github.com/actions/runner/releases/download/v2.323.0/actions-runner-linux-x64-2.323.0.tar.gz
+    dest: /actions-runner
+    remote_src: yes
+    become_user: github-runner
+
+- name: Fetch the token of github runner
+  ansible.builtin.shell: |
+    gh api -X POST orgs/manojpadigineti-cloud/actions/runners/registration-token -H "Accept: application/vnd.github+json" --jq .token
+  args:
+    chdir: /actions-runner
+    register: runner_token
+
+
+#- name: Run github_runner service
+#  ansible.builtin.import_role:
+#    name: systemd
+#    tasks_from: main.yml
+
+
+# unattended to disable interactive prompts from cli, we pass it here
+# can get help using ./config.sh --help in to get the options
+#- name:
+#  ansible.builtin.shell: |
+#    ./config.sh --url https://github.com/manojpadigineti-cloud --token {{ runner_token.stdout }}
+#  become_user: github-runner
+#  args:
+#    chdir: /actions-runner
+
+
+#user: github-runner
+#stdout
+#systemd_app_name: github_runner
