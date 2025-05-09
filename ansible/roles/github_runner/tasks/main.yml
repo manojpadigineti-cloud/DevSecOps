@@ -32,11 +32,11 @@
 # unattended to disable interactive prompts from cli, we pass it here
 # can get help using ./config.sh --help in to get the options
 # --name: Name of the runner
+# ./config.sh --unattended --url https://github.com/manojpadigineti-cloud --token {{ runner_token.stdout }}
 
 - name: Run ./config.sh
   ansible.builtin.shell: |
- # ./config.sh --unattended --url https://github.com/manojpadigineti-cloud --token {{ runner_token.stdout }}
-    ./config.sh --unattended --url https://github.com/manojpadigineti-cloud --token "{{ runner_token.stdout }}" --name Runner-1 --runnergroup Default
+    "./config.sh --unattended --url https://github.com/manojpadigineti-cloud --token {{ runner_token.stdout }} --name Runner-1 --runnergroup Default"
   become_user: github-runner
   args:
     chdir: /actions-runner
