@@ -25,13 +25,13 @@ resource "aws_iam_policy" "iam_policy" {
 	"Version": "2012-10-17",
 	"Statement": [
 		{
-			"Sid": "Ec2_full_access",
+			"Sid": "Ec2fullAccess",
 			"Effect": "Allow",
 			"Action": "ec2:*",
 			"Resource": "*"
 		},
         {
-            "Sid": "S3_full_access",
+            "Sid": "S3FullAccess",
             "Effect": "Allow",
             "Action": "s3:*",
             "Resource": "*"
