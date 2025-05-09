@@ -1,3 +1,5 @@
 user:
   - "github-runner"
 role_name: "github_runner"
+app_install:
+  - { name: "libicu" , version: "" }

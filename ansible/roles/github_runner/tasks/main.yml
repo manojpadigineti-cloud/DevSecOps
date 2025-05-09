@@ -3,6 +3,11 @@
     name: create_user
     tasks_from: main.yml
 
+- name: Install Libicu package
+  ansible.builtin.import_role:
+    name: dnf_modules
+    tasks_from: main.yml
+
 - name: create a directory /actions-runner
   ansible.builtin.file:
     path: /actions-runner
@@ -24,31 +29,34 @@
   register: runner_token
   become_user: ec2-user
 
-## To check the token is fetching properly
-#- name: Debug
-#  ansible.builtin.debug:
-#    msg: "{{ runner_token.stdout }}"
-
-- name: Copy service file
-  ansible.builtin.copy:
-    src: github_runner.service
-    dest: /etc/systemd/system/github_runner.service
-
-
-- name: Run github_runner service
-  ansible.builtin.import_role:
-    name: systemd
-    tasks_from: main.yml
-
-
-# unattended to disable interactive prompts from cli, we pass it here
-# can get help using ./config.sh --help in to get the options
-#- name:
+#- name: Run ./config.sh
 #  ansible.builtin.shell: |
 #    ./config.sh --url https://github.com/manojpadigineti-cloud --token {{ runner_token.stdout }}
 #  become_user: github-runner
 #  args:
 #    chdir: /actions-runner
+
+#- name: Copy service file
+#  ansible.builtin.copy:
+#    src: github_runner.service
+#    dest: /etc/systemd/system/github_runner.service
+#
+#
+#- name: Run github_runner service
+#  ansible.builtin.import_role:
+#    name: systemd
+#    tasks_from: main.yml
+
+## To check the token is fetching properly
+#- name: Debug
+#  ansible.builtin.debug:
+#    msg: "{{ runner_token.stdout }}"
+
+
+
+# unattended to disable interactive prompts from cli, we pass it here
+# can get help using ./config.sh --help in to get the options
+
 
 
 #user: github-runner
