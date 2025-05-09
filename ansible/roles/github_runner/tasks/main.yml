@@ -21,8 +21,6 @@
 - name: Fetch the token of github runner
   ansible.builtin.shell: |
     gh api -X POST orgs/manojpadigineti-cloud/actions/runners/registration-token -H "Accept: application/vnd.github+json" --jq .token
-  args:
-    chdir: /actions-runner
   register: runner_token
   become_user: ec2-user
 
