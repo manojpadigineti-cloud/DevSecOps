@@ -24,18 +24,21 @@
   register: runner_token
   become_user: ec2-user
 
-- name: Debug
-  ansible.builtin.debug:
-    msg: "{{ runner_token.stdout }}"
+## To check the token is fetching properly
+#- name: Debug
+#  ansible.builtin.debug:
+#    msg: "{{ runner_token.stdout }}"
+
+- name: Copy service file
+  ansible.builtin.copy:
+    src: github_runner.service
+    dest: /etc/systemd/system/github_runner.service
 
 
-
-
-
-#- name: Run github_runner service
-#  ansible.builtin.import_role:
-#    name: systemd
-#    tasks_from: main.yml
+- name: Run github_runner service
+  ansible.builtin.import_role:
+    name: systemd
+    tasks_from: main.yml
 
 
 # unattended to disable interactive prompts from cli, we pass it here
