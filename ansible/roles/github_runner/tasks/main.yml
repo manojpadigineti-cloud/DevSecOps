@@ -26,7 +26,7 @@
 
 - name: Debug
   ansible.builtin.debug:
-    cmd: {{ runner_token.stdout }}
+    cmd: "{{ runner_token.stdout }}"
 
 
 
