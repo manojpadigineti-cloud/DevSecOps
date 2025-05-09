@@ -1,4 +1,4 @@
-- name: Create a user 'Roboshop' with a home directory
+- name: Create a user {{ user }} with a home directory
   ansible.builtin.user:
     name: "{{ item }}"
     home: "/home/{{ item }}"

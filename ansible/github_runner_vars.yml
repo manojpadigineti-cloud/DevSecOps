@@ -1,2 +1,3 @@
-user: "github-runner"
+user:
+  - "github-runner"
 role_name: "github_runner"
