@@ -23,7 +23,7 @@
     gh api -X POST orgs/manojpadigineti-cloud/actions/runners/registration-token -H "Accept: application/vnd.github+json" --jq .token
   args:
     chdir: /actions-runner
-    register: runner_token
+  register: runner_token
 
 
 #- name: Run github_runner service
