@@ -24,6 +24,7 @@
   args:
     chdir: /actions-runner
   register: runner_token
+  become_user: ec2-user
 
 
 #- name: Run github_runner service
