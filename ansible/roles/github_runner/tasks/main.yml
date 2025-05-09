@@ -24,6 +24,13 @@
   register: runner_token
   become_user: ec2-user
 
+- name: Debug
+  ansible.builtin.debug:
+    cmd: {{ runner_token.stdout }}
+
+
+
+
 
 #- name: Run github_runner service
 #  ansible.builtin.import_role:
