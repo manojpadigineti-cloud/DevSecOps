@@ -4,4 +4,4 @@ microservice_name: "mysql"
 app_install:
   - { name: "mysql-server", version : "" }
 systemd_app_name: "mysqld"
-roboshop_password: "RoboShop@1"
+roboshop_password: "{{ lookup('hashi_vault', 'secret=kv/data/credentials:roboshop_password token={{ vault_token }} url=http://terraform_vault.manojpadigineti.cloud:8200')}}"
