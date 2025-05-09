@@ -3,3 +3,4 @@ user:
 role_name: "github_runner"
 app_install:
   - { name: "libicu" , version: "" }
+systemd_app_name: github_runner
