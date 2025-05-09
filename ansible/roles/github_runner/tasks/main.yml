@@ -6,7 +6,7 @@
 - name: create a directory /actions-runner
   ansible.builtin.file:
     path: /actions-runner
-    state: director
+    state: directory
     owner: github-runner
     group: github-runner
     mode: '0744'
