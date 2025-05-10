@@ -13,7 +13,7 @@ source "amazon-ebs" "ec2" {
 
   subnet_filter {
     filters = {
-          "tag:Name" = "public-subnet"
+          "tag:Name" = "private-subnet"
     }
     most_free = true
     random = false
