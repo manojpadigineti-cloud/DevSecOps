@@ -30,6 +30,9 @@ source "amazon-ebs" "ec2" {
   }
   ssh_username = "ec2-user"
   ssh_password = "DevOps321"
+  tags = {
+    Name = "RHEL-9-DevOps-Practice"
+  }
 }
 
 build {
