@@ -24,15 +24,14 @@ source "amazon-ebs" "ec2" {
 
 build {
   name    = "build_aws_ec2_ami"
-  sources = [
-    "source.amazon-ebs.ec2"
-  ]
-}
-
-provisioner "shell" {
+  sources = [ "source.amazon-ebs.ec2" ]
+  provisioner "shell" {
     inline = [
         "git clone https://github.com/manojpadigineti-cloud/DevSecOps.git",
         "git pull ; sudo bash /home/ec2-user/DevSecOps/ansible/Install_terraform.sh",
         "sudo bash /home/ec2-user/DevSecOps/ansible/install_ansible.sh"
     ]
 }
+}
+
+
