@@ -29,7 +29,7 @@ source "amazon-ebs" "ec2" {
     owners      = ["973714476881"]
   }
   ssh_username = "ec2-user"
-  ssh_username = "DevOps321"
+  ssh_password = "DevOps321"
 }
 
 build {
