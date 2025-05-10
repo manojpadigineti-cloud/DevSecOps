@@ -38,7 +38,7 @@ build {
   provisioner "shell" {
     inline = [
         "git clone https://github.com/manojpadigineti-cloud/DevSecOps.git",
-        "git pull ; sudo bash /home/ec2-user/DevSecOps/ansible/Install_terraform.sh",
+        "sudo bash /home/ec2-user/DevSecOps/ansible/Install_terraform.sh",
         "sudo bash /home/ec2-user/DevSecOps/ansible/install_ansible.sh"
     ]
 }
