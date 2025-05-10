@@ -9,6 +9,16 @@ source "amazon-ebs" "ec2" {
   ami_name      = "RHEL-DevOps-Manoj"
   instance_type = "t2.micro"
   region        = "us-east-1"
+  # subnet_id =
+
+  subnet_filter {
+    filters = {
+          "tag:Name" = "public-subnet"
+    }
+    most_free = true
+    random = false
+  }
+
   source_ami_filter {
     filters = {
       name                = "RHEL-9-DevOps-Practice"
@@ -33,5 +43,6 @@ build {
     ]
 }
 }
+
 
 
