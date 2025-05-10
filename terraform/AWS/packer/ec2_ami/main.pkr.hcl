@@ -29,7 +29,7 @@ source "amazon-ebs" "ec2" {
     owners      = ["973714476881"]
   }
   ssh_username = "ec2-user"
-  temporary_key_pair  = true
+  temporary_key_pair_name = "packer_key"
 }
 
 build {
