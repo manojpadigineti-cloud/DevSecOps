@@ -1,6 +1,6 @@
 #ami
-ami_name = "RHEL-9-DevOps-Practice"
-ami_owner = ["973714476881"]
+ami_name = "RHEL-DevOps-Manoj" #"RHEL-9-DevOps-Practice"
+ami_owner = ["965985314336"] #973714476881
 zone_name = "manojpadigineti.cloud"
 #subnet_id
 public_subnet_id = "subnet-0afd4c68c94d97fa4"

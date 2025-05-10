@@ -10,7 +10,6 @@ resource "null_resource" "terraform_provisioner" {
   provisioner "remote-exec" {
     inline = [
        "git clone https://github.com/ManojPadigineti/ansible_playbook.git",
-        "sudo bash /home/ec2-user/ansible_playbook/install_ansible.sh",
         "cd /home/ec2-user/ansible_playbook/ ; git pull; pip install hvac; ansible-playbook -i localhost playbook.yml -e var_file=${var.server_name} -e vault_token=${var.vault_token}"
     ]
   }
