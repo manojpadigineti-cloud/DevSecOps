@@ -24,16 +24,10 @@ resource "aws_iam_policy" "iam_policy" {
   policy = jsonencode({
 	"Version": "2012-10-17",
 	"Statement": [
-		{
-			"Sid": "Ec2fullAccess",
-			"Effect": "Allow",
-			"Action": "ec2:*",
-			"Resource": "*"
-		},
         {
             "Sid": "S3FullAccess",
             "Effect": "Allow",
-            "Action": "s3:*",
+            "Action": "*",
             "Resource": "*"
         }
 	]
