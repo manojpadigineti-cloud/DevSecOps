@@ -28,6 +28,17 @@
     remote_src: yes
   become_user: github-runner
 
+- name: Fetch the token of github
+  ansible.builtin.shell: |
+    export GH_TOKEN={{ github_token }}; echo $GH_TOKEN | gh auth login --hostname github.com --with-token
+  register: github_token
+  become_user: ec2-user
+
+- name: Print the token of Github
+  ansible.builtin.debug:
+    msg: {{ github_token.stdout }}
+  become_user: ec2-user
+
 - name: Fetch the token of github runner
   ansible.builtin.shell: |
     gh api -X POST orgs/manojpadigineti-cloud/actions/runners/registration-token -H "Accept: application/vnd.github+json" --jq .token
@@ -55,7 +66,6 @@
   ansible.builtin.import_role:
     name: systemd
     tasks_from: main.yml
-
 
 
 ## To check the token is fetching properly
