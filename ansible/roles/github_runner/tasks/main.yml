@@ -1,3 +1,8 @@
+- name: Copy gh-cli repo
+  ansible.builtin.import_role:
+    name: repo_copy
+    tasks_from: main.yml
+
 - name: Run tasks/other.yaml instead of 'main'
   ansible.builtin.import_role:
     name: create_user
