@@ -6,7 +6,7 @@ zone_name = "manojpadigineti.cloud"
 public_subnet_id = "subnet-0350cc3807c16013a"
 private_subnet_id = "subnet-0c5c4953342e5019a"
 #security_group
-security_group_id = "sg-0860b896fcbb71f9"
+security_group_id = "sg-0860b896fcbb71f9d"
 
 terraform_instance = {
   terraform_vault = {
