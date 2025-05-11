@@ -6,6 +6,6 @@ app_install:
   - { name: "gh" , version: "" }
 systemd_app_name: github_runner
 repo_name: gh-cli
-github_token: "{{ lookup('hashi_vault', 'secret=kv/data/credentials:github_token token={{ vault_token }} url=http://35.174.91.251:8200')}}"
+github_token: "{{ lookup('hashi_vault', 'secret=kv/data/credentials:github_token token={{ vault_token }} url=http://terraform_vault.manojpadigineti.cloud:8200')}}"
 
 
