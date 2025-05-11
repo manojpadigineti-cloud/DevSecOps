@@ -38,6 +38,5 @@ module "terraform_provisioner" {
   source = "../modules/terraform_provisioner"
   password  = var.password
   public_ip = module.terraform_vault_ec2["terraform_vault"].ec2_instance_output_public_ip
-  vault_token = var.vault_token
 }
 
