@@ -30,7 +30,7 @@
 
 - name: Fetch the token of github
   ansible.builtin.shell: |
-    export GH_TOKEN={{ github_token }}; echo $GH_TOKEN | gh auth login --hostname github.com --with-token
+    echo "{{ github_token }}" | gh auth login --hostname github.com --scopes admin:org --with-token
   register: github_token
   become_user: ec2-user
 
