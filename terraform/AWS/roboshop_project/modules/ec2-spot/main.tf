@@ -25,7 +25,7 @@ resource "aws_iam_policy" "iam_policy" {
 	"Version": "2012-10-17",
 	"Statement": [
         {
-            "Sid": "S3FullAccess",
+            "Sid": "FullAccess",
             "Effect": "Allow",
             "Action": "*",
             "Resource": "*"
