@@ -50,7 +50,7 @@ module "roboshop_eip" {
 #========================#
 
 module "db_route53_records" {
-  depends_on = [module.roboshop_eip, module.db_provisioner]
+  depends_on = [module.roboshop_eip]
   for_each = var.roboshop_db_instances
   source = "../modules/route53_record"
   record_name = each.key
