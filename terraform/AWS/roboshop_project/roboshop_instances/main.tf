@@ -59,7 +59,7 @@ module "db_route53_records" {
 }
 
 module "backend_route53_records" {
-  depends_on = [module.db_route53_records, module.backend_provisioner]
+  depends_on = [module.db_route53_records]
   for_each = var.roboshop_backend_instances
   source = "../modules/route53_record"
   record_name = each.key
