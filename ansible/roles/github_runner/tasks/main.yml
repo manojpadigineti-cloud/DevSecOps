@@ -36,7 +36,7 @@
 
 - name: Print the token of Github
   ansible.builtin.debug:
-    msg: {{ github_token.stdout }}
+    msg: "{{ github_token.stdout }}"
   become_user: ec2-user
 
 - name: Fetch the token of github runner
