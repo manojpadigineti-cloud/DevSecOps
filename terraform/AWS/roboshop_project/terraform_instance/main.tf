@@ -16,7 +16,7 @@ module "eip" {
 }
 
 module "hashicorp_vault_route_53" {
-  depends_on = [module.eip, module.terraform_vault_ec2]
+  depends_on = [module.eip, module.terraform_vault_ec2, module.terraform_provisioner]
   for_each = var.terraform_instance
   source = "../modules/route53_record"
   record_name = "${each.key}-public"
