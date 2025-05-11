@@ -18,3 +18,4 @@ variable "terraform_instance" {
     instance_type = string
   }))
 }
+variable "vault_token" {}
