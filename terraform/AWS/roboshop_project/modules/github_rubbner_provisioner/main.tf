@@ -8,7 +8,7 @@ resource "null_resource" "github_runner" {
   provisioner "remote-exec" {
     inline = [
         "git clone https://github.com/manojpadigineti-cloud/DevSecOps.git",
-        "cd /home/ec2-user/DevSecOps/ansible; git pull ;  ansible-playbook -i localhost playbook.yml -e var_file=github_runner -e vault_token=${var.vault_token}"
+        "cd /home/ec2-user/DevSecOps/ansible; git pull ; pip install hvac;  ansible-playbook -i localhost playbook.yml -e var_file=github_runner -e vault_token=${var.vault_token}"
     ]
   }
 }
