@@ -1,7 +1,7 @@
 module "github_runner" {
   for_each = var.github_runners
-  source = "../modules/ec2-spot"
-  ami    = data.aws_ami.ami.id
+  source = "../modules/ec2"
+  ami      = data.aws_ami.ami.id
   ec2_subnet = data.aws_subnet.runner_subnet.id
   instance_name = each.key
   instance_type = each.value.instance_type
