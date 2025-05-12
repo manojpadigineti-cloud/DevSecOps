@@ -8,7 +8,7 @@
     name: create_user
     tasks_from: main.yml
 
-- name: Install Libicu& gh-cli package
+- name: Install Libicu & gh-cli package
   ansible.builtin.import_role:
     name: dnf_modules
     tasks_from: main.yml
@@ -34,7 +34,7 @@
   register: githubtoken
   become_user: ec2-user
 
-- name: Fetch the token of github runner
+- name: Fetch the token to configure github runner
   ansible.builtin.shell: |
     gh api -X POST orgs/manojpadigineti-cloud/actions/runners/registration-token -H "Accept: application/vnd.github+json" --jq .token
   register: runner_token
@@ -61,14 +61,3 @@
   ansible.builtin.import_role:
     name: systemd
     tasks_from: main.yml
-
-
-## To check the token is fetching properly
-#- name: Debug
-#  ansible.builtin.debug:
-#    msg: "{{ runner_token.stdout }}"
-
-
-#user: github-runner
-#stdout
-#systemd_app_name: github_runner
