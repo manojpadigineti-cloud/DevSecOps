@@ -16,6 +16,7 @@ module "eip" {
 }
 
 module "ping_pip" {
+  depends_on = [module.eip]
   source = "../modules/ping"
   server_ip = module.terraform_vault_ec2["terraform_vault"].ec2_instance_output_public_ip
 }
