@@ -11,6 +11,6 @@ module "github_runner" {
 module "runner_provisioner" {
   source = "../modules/github_rubbner_provisioner"
   password  = data.vault_kv_secret_v2.vault_secret.data["password"]
-  private_ip = module.github_runner.ec2_instance_output_private_ip
+  private_ip = module.github_runner["runner1"].ec2_instance_output_private_ip
   vault_token = var.vault_token
 }
