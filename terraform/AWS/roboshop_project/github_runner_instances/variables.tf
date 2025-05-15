@@ -10,4 +10,4 @@ variable "security_group_id" {}
 variable "vault_token" {}
 variable "mount" {}
 variable "secret_name" {}
-variable "instannce_profile_name" {}
+variable "instance_profile_name" {}

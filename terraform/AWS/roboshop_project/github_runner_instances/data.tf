@@ -13,7 +13,7 @@ data "aws_security_group" "sg" {
 }
 
 data "aws_iam_instance_profile" "instance_profile" {
-  name = var.instannce_profile_name
+  name = var.instance_profile_name
 }
 
 data "vault_kv_secret_v2" "vault_secret" {
