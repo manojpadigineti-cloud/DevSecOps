@@ -12,6 +12,10 @@ data "aws_security_group" "sg" {
   id = var.security_group_id
 }
 
+data "aws_iam_instance_profile" "instance_profile" {
+  name = var.instannce_profile_name
+}
+
 data "vault_kv_secret_v2" "vault_secret" {
   mount = var.mount
   name  = var.secret_name

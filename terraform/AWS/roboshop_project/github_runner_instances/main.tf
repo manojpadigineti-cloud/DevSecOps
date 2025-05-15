@@ -1,12 +1,15 @@
 module "github_runner" {
   for_each = var.github_runners
-  source = "../modules/ec2"
-  ami      = data.aws_ami.ami.id
-  ec2_subnet = data.aws_subnet.runner_subnet.id
-  instance_name = each.key
-  instance_type = each.value.instance_type
-  security_group = data.aws_security_group.sg.id
+  source = "../modules/ec2-spot"
+  ami              = var.ami_name
+  ec2_subnet       = var.private_subnet_id
+  instance_name    = each.key
+  instance_profile = data.aws_iam_instance_profile.instance_profile.name
+  instance_type    = each.value.instance_type
+  security_group   = var.security_group_id
 }
+
+
 
 module "runner_provisioner" {
   source = "../modules/github_rubbner_provisioner"
