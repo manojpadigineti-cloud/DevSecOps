@@ -1,14 +1,17 @@
-server: frontend
-role_name: frontend
-catalogue_ip: "catalogue.manojpadigineti.cloud"
-user_ip: "user.manojpadigineti.cloud"
-cart_ip: "cart.manojpadigineti.cloud"
-shipping_ip: "shipping.manojpadigineti.cloud"
-payment_ip: "payment.manojpadigineti.cloud"
-systemd_app_name: nginx
-app_install:
-  - { name: "nginx", version: ""}
-app_install_version: "-1:1.24.0-4.module_el9+1087+9adf8b0f"
-disable_version: yes
+#server: frontend
+#role_name: frontend
+#catalogue_ip: "catalogue.manojpadigineti.cloud"
+#user_ip: "user.manojpadigineti.cloud"
+#cart_ip: "cart.manojpadigineti.cloud"
+#shipping_ip: "shipping.manojpadigineti.cloud"
+#payment_ip: "payment.manojpadigineti.cloud"
+#systemd_app_name: nginx
+#app_install:
+#  - { name: "nginx", version: ""}
+#app_install_version: "-1:1.24.0-4.module_el9+1087+9adf8b0f"
+#disable_version: yes
 
-#1:1.24.0-4.module_el9+1087+9adf8b0f
+
+role_name: frontend
+app_install:
+  - { name: "docker", version: ""}

@@ -1,25 +1,42 @@
+#- name: Import dnf and install nginx
+#  ansible.builtin.import_role:
+#    name: dnf_modules
+#    tasks_from: main.yml
+#
+#- name: Remove html file (delete file)
+#  ansible.builtin.file:
+#    path: /usr/share/nginx/html/*
+#    state: absent
+#
+#- name: Unarchive the file into /usr/share/nginx/html
+#  ansible.builtin.unarchive:
+#    src: https://roboshop-artifacts.s3.amazonaws.com/frontend-v3.zip
+#    dest: /usr/share/nginx/html/
+#    remote_src: yes
+#
+#- name: copy nginx.conf
+#  ansible.builtin.template:
+#    src: nginx.conf
+#    dest: /etc/nginx/nginx.conf
+#
+#- name: Import systemd and start nginx
+#  ansible.builtin.import_role:
+#    name: systemd
+#    tasks_from: main.yml
+
+#===================
+#  Docker Setup
+#====================
 - name: Import dnf and install nginx
   ansible.builtin.import_role:
     name: dnf_modules
     tasks_from: main.yml
 
-- name: Remove html file (delete file)
-  ansible.builtin.file:
-    path: /usr/share/nginx/html/*
-    state: absent
-
-- name: Unarchive the file into /usr/share/nginx/html
-  ansible.builtin.unarchive:
-    src: https://roboshop-artifacts.s3.amazonaws.com/frontend-v3.zip
-    dest: /usr/share/nginx/html/
-    remote_src: yes
-
-- name: copy nginx.conf
-  ansible.builtin.template:
-    src: nginx.conf
-    dest: /etc/nginx/nginx.conf
-
-- name: Import systemd and start nginx
-  ansible.builtin.import_role:
-    name: systemd
-    tasks_from: main.yml
+- name: create frontend container
+  containers.podman.podman_container:
+    name: frontend
+    image: public.ecr.aws/w8x4g9h7/roboshop-v3/frontend
+    state: present
+    recreate: true
+    expose:
+      - 80
