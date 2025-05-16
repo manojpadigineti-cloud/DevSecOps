@@ -33,7 +33,7 @@ module "hashicorp_vault_route_53" {
   for_each = var.terraform_instance
   source = "../modules/route53_record"
   record_name = "${each.key}-public"
-  route53_records = module.eip_associate[each.key].eip_associate_output
+  route53_records = module.eip_associate[each.key].eip_associate_publicip
   zoneid = data.aws_route53_zone.route_53_zone.id
 }
 
@@ -50,6 +50,5 @@ module "terraform_provisioner" {
   depends_on = [module.hashicorp_vault_route_53]
   source = "../modules/terraform_provisioner"
   password  = var.password
-  public_ip = module.eip_associate["terraform_vault"].eip_associate_output
+  public_ip = module.eip_associate["terraform_vault"].eip_associate_publicip
 }
-

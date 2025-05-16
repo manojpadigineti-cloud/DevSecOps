@@ -1,7 +1,7 @@
 data "aws_ami" "ami" {
   most_recent      = true
   name_regex       = var.ami_name
-  owners           = [var.owner_id]
+  owners           = var.owner_id
 }
 
 data "aws_subnet" "runner_subnet" {

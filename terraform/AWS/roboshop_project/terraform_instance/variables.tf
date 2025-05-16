@@ -9,9 +9,6 @@ variable "public_subnet_id" {
   type = string
 }
 variable "security_group_id" {}
-variable "private_subnet_id" {
-  type = string
-}
 
 variable "terraform_instance" {
   type = map(object({

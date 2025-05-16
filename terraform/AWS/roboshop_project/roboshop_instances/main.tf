@@ -45,6 +45,14 @@ module "roboshop_eip" {
   instance_id = module.roboshop_frontend_instances[each.key].ec2_instance_output_id
 }
 
+module "eip_associate" {
+  depends_on = [module.roboshop_eip]
+  for_each = var.roboshop_frontend_instances
+  source = "../modules/eip_associate"
+  allocation_id = module.roboshop_eip.eip_id
+  instance_id   = module.roboshop_frontend_instances[each.key].ec2_instance_output_id
+}
+
 #========================#
 #       Route_53         #
 #========================#
@@ -68,11 +76,11 @@ module "backend_route53_records" {
 }
 
 module "frontend_route53_records" {
-  depends_on = [module.roboshop_frontend_instances, module.backend_route53_records]
+  depends_on = [module.roboshop_frontend_instances, module.backend_route53_records, module.eip_associate]
   for_each = var.roboshop_frontend_instances
   source = "../modules/route53_record"
   record_name = each.key
-  route53_records = module.roboshop_frontend_instances[each.key].ec2_instance_output_public_ip
+  route53_records = module.eip_associate[each.key].eip_associate_publicip
   zoneid = data.aws_route53_zone.route_53_zone.id
 }
 
