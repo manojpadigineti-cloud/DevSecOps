@@ -21,3 +21,12 @@
   ansible.builtin.import_role:
     name: systemd
     tasks_from: main.yml
+
+# EKSCTL
+
+- name: Unzip EKSCTL file
+  ansible.builtin.unarchive:
+    src: https://github.com/eksctl-io/eksctl/releases/latest/download/eksctl_Linux_.tar.gz
+    dest: /home/ec2-user/eksctl_Linux_.tar.gz
+    remote_src: yes
+
