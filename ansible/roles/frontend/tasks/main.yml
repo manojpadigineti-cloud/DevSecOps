@@ -40,13 +40,13 @@
     ports:
       - "80:80"
     env:
-      CATALOGUE_HOST: "catalogue-ip"
+      CATALOGUE_HOST: ""
       CATALOGUE_PORT: "8080"
-      USER_HOST: "user-host"
+      USER_HOST: ""
       USER_PORT: "8080"
-      CART_HOST: "cart-host"
+      CART_HOST: ""
       CART_PORT: "8080"
-      SHIPPING_HOST: "shipping-host"
+      SHIPPING_HOST: ""
       SHIPPING_PORT: "8080"
-      PAYMENT_HOST: "payment-host"
+      PAYMENT_HOST: ""
       PAYMENT_PORT: "8080"
