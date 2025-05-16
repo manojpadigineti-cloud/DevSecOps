@@ -7,7 +7,7 @@ terraform {
   }
 }
 provider "vault" {
-  address = "http://terraform_vault-public.manojpadigineti.cloud:8200"
+  address = "http://terraform_vault.manojpadigineti.cloud:8200"
   token = var.vault_token
   skip_tls_verify = true
 }
