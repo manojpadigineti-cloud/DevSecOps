@@ -27,6 +27,6 @@
 - name: Unzip EKSCTL file
   ansible.builtin.unarchive:
     src: https://github.com/eksctl-io/eksctl/releases/latest/download/eksctl_Linux_.tar.gz
-    dest: /home/ec2-user/eksctl_Linux_.tar.gz
+    dest: /home/ec2-user/
     remote_src: yes
 
