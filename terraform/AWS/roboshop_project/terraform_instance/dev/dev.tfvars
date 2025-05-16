@@ -3,9 +3,9 @@ ami_name = "RHEL-DevOps-Manoj" #"RHEL-9-DevOps-Practice"
 ami_owner = ["965985314336"] #973714476881
 zone_name = "manojpadigineti.cloud"
 #subnet_id
-public_subnet_id = "subnet-0942390dfdc9fbe43"
+public_subnet_id = "subnet-099d2a13753d045e9"
 #security_group
-security_group_id = "sg-01ac7168f056035b1"
+security_group_id = "sg-0178f68dfd253f44d"
 
 terraform_instance = {
   terraform_vault = {
