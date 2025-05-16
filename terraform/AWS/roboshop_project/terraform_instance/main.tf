@@ -19,6 +19,7 @@ module "eip" {
   for_each = var.terraform_instance
   source = "../modules/eip"
   instance_id = module.terraform_vault_ec2[each.key].ec2_instance_output_id
+  eip_name = each.key
 }
 
 module "eip_associate" {

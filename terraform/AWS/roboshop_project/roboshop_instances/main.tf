@@ -43,13 +43,14 @@ module "roboshop_eip" {
   for_each = var.roboshop_frontend_instances
   source = "../modules/eip"
   instance_id = module.roboshop_frontend_instances[each.key].ec2_instance_output_id
+  eip_name = each.key
 }
 
 module "eip_associate" {
   depends_on = [module.roboshop_eip]
   for_each = var.roboshop_frontend_instances
   source = "../modules/eip_associate"
-  allocation_id = module.roboshop_eip.eip_id
+  allocation_id = module.roboshop_eip[each.key].eip_id
   instance_id   = module.roboshop_frontend_instances[each.key].ec2_instance_output_id
 }
 
