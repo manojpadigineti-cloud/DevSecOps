@@ -63,7 +63,7 @@
 
 - name: create shipping app-user schema-load container
   containers.podman.podman_container:
-    name: shipping-schema-load
+    name: shipping-app-user-schema-load
     image: public.ecr.aws/w8x4g9h7/roboshop-v3/schema-load
     state: started
     ports:
@@ -94,7 +94,7 @@
 
 - name: create shipping master-data schema-load container
   containers.podman.podman_container:
-    name: shipping-schema-load
+    name: shipping-master-data-load
     image: public.ecr.aws/w8x4g9h7/roboshop-v3/schema-load
     state: started
     ports:
