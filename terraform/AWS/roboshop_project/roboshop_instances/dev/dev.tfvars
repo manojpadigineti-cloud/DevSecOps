@@ -1,8 +1,8 @@
 ami_name = "RHEL-DevOps-Manoj" #"RHEL-9-DevOps-Practice"
 ami_owner = ["965985314336"] #973714476881
-security_group_id = "sg-01ac7168f056035b1"
-public_subnet_id = "subnet-0942390dfdc9fbe43"
-private_subnet_id = "subnet-013e0293b77b828d9"
+security_group_id = "sg-0178f68dfd253f44d"
+public_subnet_id = "subnet-099d2a13753d045e9"
+private_subnet_id = "subnet-024909327b7a6665b"
 zone_name = "manojpadigineti.cloud"
 mount_path = "kv"
 secret_name = "credentials"

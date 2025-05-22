@@ -1,7 +1,7 @@
 ami_name = "RHEL-DevOps-Manoj"
 owner_id = ["965985314336"]
-private_subnet_id = "subnet-013e0293b77b828d9"
-security_group_id = "sg-01ac7168f056035b1"
+private_subnet_id = "subnet-024909327b7a6665b"
+security_group_id = "sg-0178f68dfd253f44d"
 instance_profile_name = "ec2-instance-profile"
 mount = "kv"
 secret_name = "credentials"
