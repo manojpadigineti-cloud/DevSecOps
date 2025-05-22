@@ -49,10 +49,10 @@
     name: dnf_modules
     tasks_from: main.yml
 
-- name: create cart container
+- name: create shipping container
   containers.podman.podman_container:
-    name: cart
-    image: public.ecr.aws/w8x4g9h7/roboshop-v3/cart
+    name: shipping
+    image: public.ecr.aws/w8x4g9h7/roboshop-v3/shipping
     state: started
     ports:
       - "8080:8080"
@@ -60,9 +60,10 @@
       CART_ENDPOINT: "cart.manojpadigineti.cloud:8080"
       DB_HOST: "mysql.manojpadigineti.cloud"
 
-- name: create cart app-user schema-load container
+
+- name: create shipping app-user schema-load container
   containers.podman.podman_container:
-    name: cart-schema-load
+    name: shipping-schema-load
     image: public.ecr.aws/w8x4g9h7/roboshop-v3/schema-load
     state: started
     ports:
@@ -70,14 +71,15 @@
     env:
       DB_TYPE: "mysql"
       APP_GIT_URL: "https://github.com/roboshop-devops-project-v3/shipping"
-      DB_HOST: mysql.manojpadigineti.cloud
+      DB_HOST: "mysql.manojpadigineti.cloud"
       DB_USER: "root"
       DB_PASS: "{{ lookup('hashi_vault', 'secret=kv/data/credentials:roboshop_password token={{ vault_token }} url=http://terraform_vault.manojpadigineti.cloud:8200')}}"
       SCHEMA_FILE: "db/app-user.sql"
 
-- name: create cart schema schema-load container
+
+- name: create shipping schema schema-load container
   containers.podman.podman_container:
-    name: cart-schema-load
+    name: shipping-schema-load
     image: public.ecr.aws/w8x4g9h7/roboshop-v3/schema-load
     state: started
     ports:
@@ -85,14 +87,14 @@
     env:
       DB_TYPE: "mysql"
       APP_GIT_URL: "https://github.com/roboshop-devops-project-v3/shipping"
-      DB_HOST: mysql.manojpadigineti.cloud
+      DB_HOST: "mysql.manojpadigineti.cloud"
       DB_USER: "root"
       DB_PASS: "{{ lookup('hashi_vault', 'secret=kv/data/credentials:roboshop_password token={{ vault_token }} url=http://terraform_vault.manojpadigineti.cloud:8200')}}"
       SCHEMA_FILE: "db/schema.sql"
 
-- name: create cart master-data schema-load container
+- name: create shipping master-data schema-load container
   containers.podman.podman_container:
-    name: cart-schema-load
+    name: shipping-schema-load
     image: public.ecr.aws/w8x4g9h7/roboshop-v3/schema-load
     state: started
     ports:
@@ -100,7 +102,7 @@
     env:
       DB_TYPE: "mysql"
       APP_GIT_URL: "https://github.com/roboshop-devops-project-v3/shipping"
-      DB_HOST: mysql.manojpadigineti.cloud
+      DB_HOST: "mysql.manojpadigineti.cloud"
       DB_USER: "root"
       DB_PASS: "{{ lookup('hashi_vault', 'secret=kv/data/credentials:roboshop_password token={{ vault_token }} url=http://terraform_vault.manojpadigineti.cloud:8200')}}"
       SCHEMA_FILE: "db/master-data.sql"
