@@ -40,13 +40,13 @@
     ports:
       - "80:80"
     env:
-      CATALOGUE_HOST: ""
+      CATALOGUE_HOST: "catalogue.manojpadigineti.cloud"
       CATALOGUE_PORT: "8080"
-      USER_HOST: ""
+      USER_HOST: "user.manojpadigineti.cloud"
       USER_PORT: "8080"
-      CART_HOST: ""
+      CART_HOST: "cart.manojpadigineti.cloud"
       CART_PORT: "8080"
-      SHIPPING_HOST: ""
+      SHIPPING_HOST: "shipping.manojpadigineti.cloud"
       SHIPPING_PORT: "8080"
-      PAYMENT_HOST: ""
+      PAYMENT_HOST: "payment.manojpadigineti.cloud"
       PAYMENT_PORT: "8080"

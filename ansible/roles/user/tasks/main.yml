@@ -1,35 +1,56 @@
-- name: Import dnf_installation
+#- name: Import dnf_installation
+#  ansible.builtin.import_role:
+#    name: dnf_modules
+#    tasks_from: main.yml
+#
+#- name: Create User
+#  ansible.builtin.import_role:
+#    name: create_user
+#    tasks_from: main.yml
+#
+#- name: Create Directory
+#  ansible.builtin.import_role:
+#    name: create_directory
+#    tasks_from: main.yml
+#
+#- name: Untar the zipfile
+#  ansible.builtin.unarchive:
+#    src: https://roboshop-artifacts.s3.amazonaws.com/user-v3.zip
+#    dest: "{{  directory_path }}"
+#    remote_src: yes
+#
+#- name: NPM Install
+#  ansible.builtin.shell: npm install
+#  args:
+#    chdir: "{{ directory_path }}"
+#
+#- name: Copy user service file
+#  ansible.builtin.template:
+#    src: user.service
+#    dest: /etc/systemd/system/user.service
+#
+#- name: systemd start user service
+#  ansible.builtin.import_role:
+#    name: systemd
+#    tasks_from: main.yml
+
+
+#===================
+#  Docker Setup
+#====================
+- name: Import dnf and install nginx
   ansible.builtin.import_role:
     name: dnf_modules
     tasks_from: main.yml
 
-- name: Create User
-  ansible.builtin.import_role:
-    name: create_user
-    tasks_from: main.yml
-
-- name: Create Directory
-  ansible.builtin.import_role:
-    name: create_directory
-    tasks_from: main.yml
-
-- name: Untar the zipfile
-  ansible.builtin.unarchive:
-    src: https://roboshop-artifacts.s3.amazonaws.com/user-v3.zip
-    dest: "{{  directory_path }}"
-    remote_src: yes
-
-- name: NPM Install
-  ansible.builtin.shell: npm install
-  args:
-    chdir: "{{ directory_path }}"
-
-- name: Copy user service file
-  ansible.builtin.template:
-    src: user.service
-    dest: /etc/systemd/system/user.service
-
-- name: systemd start user service
-  ansible.builtin.import_role:
-    name: systemd
-    tasks_from: main.yml
+- name: create user container
+  containers.podman.podman_container:
+    name: user
+    image: public.ecr.aws/w8x4g9h7/roboshop-v3/user
+    state: started
+    ports:
+      - "8080:8080"
+    env:
+      MONGO: true
+      REDIS_URL: "redis://redis.manojpadigineti.cloud:6379"
+      MONGO_URL: "mongodb://mongodb.manojpadigineti.cloud:27017/users"

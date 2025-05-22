@@ -1,15 +1,18 @@
-role_name: "cart"
-server: "cart"
-enable_app_version: "20"
-disable_enable_app: "nodejs"
-app_install:
-  - { name: "nodejs" , version: ""}
-user:
-  - "roboshop"
-dir_owner: "roboshop"
-directory_path: "/app"
-redis_ip: "redis.manojpadigineti.cloud"
-catalogue_ip: "catalogue.manojpadigineti.cloud"
-systemd_app_name: "cart"
-microservice_name: "cart"
+#role_name: "cart"
+#server: "cart"
+#enable_app_version: "20"
+#disable_enable_app: "nodejs"
+#app_install:
+#  - { name: "nodejs" , version: ""}
+#user:
+#  - "roboshop"
+#dir_owner: "roboshop"
+#directory_path: "/app"
+#redis_ip: "redis.manojpadigineti.cloud"
+#catalogue_ip: "catalogue.manojpadigineti.cloud"
+#systemd_app_name: "cart"
+#microservice_name: "cart"
 
+role_name: cart
+app_install:
+  - { name: "docker", version: ""}

@@ -1,18 +1,22 @@
-role_name: "shipping"
-server: "shipping"
-microservice_name: "shipping"
+#role_name: "shipping"
+#server: "shipping"
+#microservice_name: "shipping"
+#app_install:
+#  - { name: "maven", version: ""}
+#  - { name: "mysql", version: ""}
+#schemas:
+#  - "schema"
+#  - "app-user"
+#  - "master-data"
+#user:
+#  - "roboshop"
+#dir_owner: "roboshop"
+#directory_path: "/app"
+#cart_ip: "cart.manojpadigineti.cloud"
+#mysql_ip: "mysql.manojpadigineti.cloud"
+#systemd_app_name: "shipping"
+#rb_password: "{{ lookup('hashi_vault', 'secret=kv/data/credentials:roboshop_password token={{ vault_token }} url=http://terraform_vault.manojpadigineti.cloud:8200')}}"
+
+role_name: shipping
 app_install:
-  - { name: "maven", version: ""}
-  - { name: "mysql", version: ""}
-schemas:
-  - "schema"
-  - "app-user"
-  - "master-data"
-user:
-  - "roboshop"
-dir_owner: "roboshop"
-directory_path: "/app"
-cart_ip: "cart.manojpadigineti.cloud"
-mysql_ip: "mysql.manojpadigineti.cloud"
-systemd_app_name: "shipping"
-rb_password: "{{ lookup('hashi_vault', 'secret=kv/data/credentials:roboshop_password token={{ vault_token }} url=http://terraform_vault.manojpadigineti.cloud:8200')}}"
+  - { name: "docker", version: ""}

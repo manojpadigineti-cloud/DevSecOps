@@ -1,16 +1,20 @@
+#role_name: catalogue
+#app_install:
+#  - { name: "nodejs" , version: "" }
+#  - { name: "mongodb-mongosh", version: "" }
+#repo_name: "mongo"
+#disable_enable_app: nodejs
+#enable_app_version: "20"
+#systemd_app_name: catalogue
+#mongo_ip: "mongodb.manojpadigineti.cloud"
+#server: catalogue
+#user:
+#  - "roboshop"
+#dir_owner: "roboshop"
+#directory_path: /app
+#microservice_name: catalogue
+#copy_repo: mongodb
+
 role_name: catalogue
 app_install:
-  - { name: "nodejs" , version: "" }
-  - { name: "mongodb-mongosh", version: "" }
-repo_name: "mongo"
-disable_enable_app: nodejs
-enable_app_version: "20"
-systemd_app_name: catalogue
-mongo_ip: "mongodb.manojpadigineti.cloud"
-server: catalogue
-user:
-  - "roboshop"
-dir_owner: "roboshop"
-directory_path: /app
-microservice_name: catalogue
-copy_repo: mongodb
+  - { name: "docker", version: ""}

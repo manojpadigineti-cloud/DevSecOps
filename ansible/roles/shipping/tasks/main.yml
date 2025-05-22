@@ -1,42 +1,106 @@
-- name: Configuring "{{ microservice_name }}"
-  ansible.builtin.debug:
-    msg: Building "{{ microservice_name }}" microservice
+#- name: Configuring "{{ microservice_name }}"
+#  ansible.builtin.debug:
+#    msg: Building "{{ microservice_name }}" microservice
+#
+#- name: Import dnf_installation
+#  ansible.builtin.import_role:
+#    name: dnf_modules
+#    tasks_from: main.yml
+#
+#- name: create user
+#  ansible.builtin.import_role:
+#    name: create_user
+#    tasks_from: main.yml
+#
+#- name: create directory
+#  ansible.builtin.import_role:
+#    name: create_directory
+#    tasks_from: main.yml
+#
+#- name: Download and untar
+#  ansible.builtin.unarchive:
+#    src: https://roboshop-artifacts.s3.amazonaws.com/shipping-v3.zip
+#    dest: "{{ directory_path }}"
+#    remote_src: yes
+#
+#- name: Execute mvn package
+#  ansible.builtin.shell: cd "{{ directory_path }}" ; mvn clean package ; mv target/shipping-1.0.jar shipping.jar
+#
+#- name: Copy shipping systemd service file
+#  ansible.builtin.template:
+#    src: shipping.service
+#    dest: /etc/systemd/system/shipping.service
+#
+#- name: Execute mvn package
+#  ansible.builtin.shell: cd "{{ directory_path }}" ; mysql -h "{{ mysql_ip }}" -uroot -p"{{ rb_password }}" < /app/db/"{{ item }}".sql
+#  loop: "{{ schemas }}"
+#
+#- name: Systemd start service
+#  ansible.builtin.import_role:
+#    name: systemd
+#    tasks_from: main.yml
+#
 
-- name: Import dnf_installation
+#===================
+#  Docker Setup
+#====================
+- name: Import dnf and install nginx
   ansible.builtin.import_role:
     name: dnf_modules
     tasks_from: main.yml
 
-- name: create user
-  ansible.builtin.import_role:
-    name: create_user
-    tasks_from: main.yml
+- name: create cart container
+  containers.podman.podman_container:
+    name: cart
+    image: public.ecr.aws/w8x4g9h7/roboshop-v3/cart
+    state: started
+    ports:
+      - "8080:8080"
+    env:
+      CART_ENDPOINT: "cart.manojpadigineti.cloud:8080"
+      DB_HOST: "mysql.manojpadigineti.cloud"
 
-- name: create directory
-  ansible.builtin.import_role:
-    name: create_directory
-    tasks_from: main.yml
+- name: create cart app-user schema-load container
+  containers.podman.podman_container:
+    name: cart-schema-load
+    image: public.ecr.aws/w8x4g9h7/roboshop-v3/schema-load
+    state: started
+    ports:
+      - "8080:8080"
+    env:
+      DB_TYPE: "mysql"
+      APP_GIT_URL: "https://github.com/roboshop-devops-project-v3/shipping"
+      DB_HOST: mysql.manojpadigineti.cloud
+      DB_USER: "root"
+      DB_PASS: "{{ lookup('hashi_vault', 'secret=kv/data/credentials:roboshop_password token={{ vault_token }} url=http://terraform_vault.manojpadigineti.cloud:8200')}}"
+      SCHEMA_FILE: "db/app-user.sql"
 
-- name: Download and untar
-  ansible.builtin.unarchive:
-    src: https://roboshop-artifacts.s3.amazonaws.com/shipping-v3.zip
-    dest: "{{ directory_path }}"
-    remote_src: yes
+- name: create cart schema schema-load container
+  containers.podman.podman_container:
+    name: cart-schema-load
+    image: public.ecr.aws/w8x4g9h7/roboshop-v3/schema-load
+    state: started
+    ports:
+      - "8080:8080"
+    env:
+      DB_TYPE: "mysql"
+      APP_GIT_URL: "https://github.com/roboshop-devops-project-v3/shipping"
+      DB_HOST: mysql.manojpadigineti.cloud
+      DB_USER: "root"
+      DB_PASS: "{{ lookup('hashi_vault', 'secret=kv/data/credentials:roboshop_password token={{ vault_token }} url=http://terraform_vault.manojpadigineti.cloud:8200')}}"
+      SCHEMA_FILE: "db/schema.sql"
 
-- name: Execute mvn package
-  ansible.builtin.shell: cd "{{ directory_path }}" ; mvn clean package ; mv target/shipping-1.0.jar shipping.jar
-
-- name: Copy shipping systemd service file
-  ansible.builtin.template:
-    src: shipping.service
-    dest: /etc/systemd/system/shipping.service
-
-- name: Execute mvn package
-  ansible.builtin.shell: cd "{{ directory_path }}" ; mysql -h "{{ mysql_ip }}" -uroot -p"{{ rb_password }}" < /app/db/"{{ item }}".sql
-  loop: "{{ schemas }}"
-
-- name: Systemd start service
-  ansible.builtin.import_role:
-    name: systemd
-    tasks_from: main.yml
-
+- name: create cart master-data schema-load container
+  containers.podman.podman_container:
+    name: cart-schema-load
+    image: public.ecr.aws/w8x4g9h7/roboshop-v3/schema-load
+    state: started
+    ports:
+      - "8080:8080"
+    env:
+      DB_TYPE: "mysql"
+      APP_GIT_URL: "https://github.com/roboshop-devops-project-v3/shipping"
+      DB_HOST: mysql.manojpadigineti.cloud
+      DB_USER: "root"
+      DB_PASS: "{{ lookup('hashi_vault', 'secret=kv/data/credentials:roboshop_password token={{ vault_token }} url=http://terraform_vault.manojpadigineti.cloud:8200')}}"
+      SCHEMA_FILE: "db/master-data.sql"

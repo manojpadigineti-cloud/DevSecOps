@@ -1,13 +1,17 @@
+#role_name: user
+#server: user
+#app_install:
+#  - { name: "nodejs" , version: "" }
+#disable_enable_app: "nodejs"
+#enable_app_version: "20"
+#user:
+#  - "roboshop"
+#dir_owner: "roboshop"
+#directory_path: "/app"
+#redis_ip: "redis.manojpadigineti.cloud"
+#mongo_ip: "mongodb.manojpadigineti.cloud"
+#systemd_app_name: "user"
+
 role_name: user
-server: user
 app_install:
-  - { name: "nodejs" , version: "" }
-disable_enable_app: "nodejs"
-enable_app_version: "20"
-user:
-  - "roboshop"
-dir_owner: "roboshop"
-directory_path: "/app"
-redis_ip: "redis.manojpadigineti.cloud"
-mongo_ip: "mongodb.manojpadigineti.cloud"
-systemd_app_name: "user"
+  - { name: "docker", version: ""}
