@@ -34,6 +34,7 @@
   register: githubtoken
   become_user: ec2-user
 
+# This is used to fetch the token from Github actions runner to configure a runner
 - name: Fetch the token to configure github runner
   ansible.builtin.shell: |
     gh api -X POST orgs/manojpadigineti-cloud/actions/runners/registration-token -H "Accept: application/vnd.github+json" --jq .token
@@ -45,6 +46,7 @@
 # --name: Name of the runner
 # ./config.sh --unattended --url https://github.com/manojpadigineti-cloud --token {{ runner_token.stdout }}
 
+# Use the above token here to configure the runner
 - name: Run ./config.sh
   ansible.builtin.shell: ./config.sh --unattended --url https://github.com/manojpadigineti-cloud --token "{{ runner_token.stdout }}" --name Runner-1 --runnergroup Default
   become_user: github-runner
