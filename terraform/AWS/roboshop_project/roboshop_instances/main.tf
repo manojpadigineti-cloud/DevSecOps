@@ -39,7 +39,7 @@ module "roboshop_db_instances" {
 #===================#
 module "roboshop_eip-db" {
   depends_on = [module.roboshop_db_instances]
-  for_each = var.roboshop_frontend_instances
+  for_each = var.roboshop_db_instances
   source = "../modules/eip"
   instance_id = module.roboshop_db_instances[each.key].ec2_instance_output_id
   eip_name = each.key
