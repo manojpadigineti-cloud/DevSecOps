@@ -4,4 +4,5 @@
 4. Login to terraform-vault instance create hashicorp vault secrets in the terraform-vault instance
 5. create github_token and its value as secret before running the github runner instance in terraform-vault instance
 6. Login to terraform-vault instance and run terraform for github_runner instance  
-7. check the runner is added in github actions and run the terraform apply workflow which will create roboshop instances
+7. Add secret value of VAULT_TOKEN in github actions secrets
+8. check the runner is added in github actions and run the terraform apply workflow which will create roboshop instances
