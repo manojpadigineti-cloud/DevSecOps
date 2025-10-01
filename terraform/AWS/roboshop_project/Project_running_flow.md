@@ -1,8 +1,8 @@
-1. Create network
+1. Create network for project using terraform in local
 2. Replace sg, subnet id's on all variable vars files in the project
-3. create terraform instance, it will create hashicorp vault.
-4. Login to terraform-vault instance create hashicorp vault secrets in the terraform-vault instance
-5. create github_token and its value as secret before running the github runner instance in terraform-vault instance
-6. Login to terraform-vault instance and run terraform for github_runner instance  
+3. Create terraform-vault instance in local using terraform apply, it will create hashicorp vault. 
+4. Login to terraform-vault instance create "hashicorp_vault_secrets" in the terraform-vault instance
+5. Create github_token and its value as Hashicorp vault secret before running the github runner instance in terraform-vault instance
+6. Login to terraform-vault instance and run terraform for github_runner instance (It will fetch the github_token value from Hashicorp vault) 
 7. Add secret value of VAULT_TOKEN in github actions secrets
-8. check the runner is added in github actions and run the terraform apply workflow which will create roboshop instances
+8. Check the runner is added in github actions and run the terraform apply workflow which will create Roboshop project required instances
