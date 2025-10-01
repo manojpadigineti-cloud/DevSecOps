@@ -13,11 +13,12 @@ source "amazon-ebs" "ec2" {
 
   subnet_filter {
     filters = {
-          "tag:Name" = "private-subnet"
+          "tag:Name" = "public-subnet"
     }
     most_free = true
     random = false
   }
+associate_public_ip_address = true
 
   source_ami_filter {
     filters = {
