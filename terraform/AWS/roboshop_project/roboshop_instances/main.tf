@@ -100,7 +100,7 @@ module "db_provisioner" {
   for_each = var.roboshop_db_instances
   source = "../modules/ansible_provisioner"
   password  = data.vault_kv_secret_v2.credentials.data["password"]
-  public_ip = module.roboshop_db_instances[each.key].ec2_instance_output_public_ip
+  public_ip = module.roboshop_eip-db.eip_publicip
   server_name = each.key
   username = data.vault_kv_secret_v2.credentials.data["username"]
   vault_token = var.vault_token
