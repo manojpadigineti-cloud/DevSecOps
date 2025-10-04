@@ -10,7 +10,7 @@ resource "aws_iam_role" "eks_cluster_iam_role" {
         ]
         Effect = "Allow"
         Principal = {
-          Service = "eks.amazonaws.com"
+          Service = [ "eks.amazonaws.com", "ec2.amazonaws.com" ]
         }
       },
     ]
@@ -23,3 +23,4 @@ resource "aws_iam_role_policy_attachment" "IAM_policy_attachment" {
   policy_arn = each.value
   role       = aws_iam_role.eks_cluster_iam_role.name
 }
+

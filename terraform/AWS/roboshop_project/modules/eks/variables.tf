@@ -4,3 +4,4 @@ variable "subnet_ids" {}
 variable "policy_arn" {
   type = list(string)
 }
+variable "nodegroup_name" {}
