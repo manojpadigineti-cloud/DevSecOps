@@ -54,7 +54,7 @@ roboshop_frontend_instances = {
 EKS = {
   Roboshop_eks_cluster = {
     iam_role_name = "eks_iam_role"
-    subnets = ["subnet-0a745d094a7bd3915", "subnet-0c6bb7036857981d6"]
+    subnets = ["subnet-0a745d094a7bd3915"]
   }
 }
 
