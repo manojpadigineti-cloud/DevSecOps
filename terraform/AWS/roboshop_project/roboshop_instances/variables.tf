@@ -46,7 +46,4 @@ variable "EKS" {
   }))
 }
 
-variable "addon" {
-  type = object({
-  })
-}
+variable "addon" {}
