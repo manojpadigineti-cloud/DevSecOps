@@ -43,6 +43,6 @@ variable "EKS" {
   type = map(object({
     iam_role_name = string
     subnets = list(string)
-    addons = list(string)
   }))
 }
+variable "addon" {}

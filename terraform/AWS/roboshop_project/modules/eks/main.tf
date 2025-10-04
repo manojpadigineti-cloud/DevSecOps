@@ -47,6 +47,7 @@ resource "aws_eks_node_group" "node_group" {
 ###################
 
 resource "aws_eks_addon" "example" {
+  for_each = toset(var.addon)
   cluster_name                = aws_eks_cluster.eks_cluster.name
   addon_name                  = var.addon
   addon_version               = "v1.10.1-eksbuild.1" #e.g., previous version v1.9.3-eksbuild.3 and the new version is v1.10.1-eksbuild.1

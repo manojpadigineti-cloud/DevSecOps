@@ -68,7 +68,6 @@ EKS = {
   Roboshop_eks_cluster = {
     iam_role_name = "eks_iam_role"
     subnets = ["eks-subnet-1", "eks-subnet-2" ]
-    addons = ["vpc-cni", "coredns" ]
   }
 }
 
@@ -84,4 +83,4 @@ eks_policy_arn = [ "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy",
                   "arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy",
                   "arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess"
                   ]
-
+addon = ["vpc-cni", "coredns" ]
