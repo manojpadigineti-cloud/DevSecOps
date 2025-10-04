@@ -84,6 +84,6 @@ EKS = {
 #                   "arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess"
 #                   ]
 
-eks_policy_arn = [ "arn:aws:iam::aws:policy/AmazonEKS*", "arn:aws:iam::aws:policy/AmazonEC2*", "AmazonS3*" ]
+eks_policy_arn = [ "arn:aws:iam::aws:policy/AmazonEKS*", "arn:aws:iam::aws:policy/AmazonEC2*", "arn:aws:iam::aws:policy/AmazonS3*" ]
 
 addon = ["vpc-cni", "coredns" ]
