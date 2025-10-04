@@ -3,6 +3,7 @@ ami_owner = ["260380093736"] #973714476881
 security_group_id = "sg-055ec21053a42f5de"
 public_subnet_id = "subnet-0a745d094a7bd3915"
 private_subnet_id = "subnet-0c6bb7036857981d6"
+vpc_id = "vpc-0bf351a4a107e2830"
 zone_name = "manojpadigineti.cloud"
 mount_path = "kv"
 secret_name = "credentials"
@@ -51,10 +52,22 @@ roboshop_frontend_instances = {
   }
 }
 
+eks_subnets = {
+    eks-subnet-1 = {
+      cidr = "15.0.2.0/24"
+      subnet_zone = "us-east-1d"
+  }
+    eks-subnet-2 = {
+      cidr = "16.0.2.0/24"
+      subnet_zone = "us-east-1c"
+  }
+}
+
+
 EKS = {
   Roboshop_eks_cluster = {
     iam_role_name = "eks_iam_role"
-    subnets = ["subnet-0a745d094a7bd3915"]
+    subnets = ["eks-subnet-1", "eks-subnet-2" ]
   }
 }
 

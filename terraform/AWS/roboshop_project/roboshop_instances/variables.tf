@@ -30,6 +30,15 @@ variable "eks_policy_arn" {
   type = list(string)
 }
 
+variable "vpc_id" {}
+
+variable "eks_subnets" {
+  type = map(object({
+    cidr = string
+    subnet_zone = string
+  }))
+}
+
 variable "EKS" {
   type = map(object({
     iam_role_name = string

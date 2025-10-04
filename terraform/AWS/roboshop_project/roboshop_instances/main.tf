@@ -132,11 +132,22 @@ module "db_provisioner" {
 #       EKS Kubernete Cluster     #
 #=================================#
 
+module "EKS_Subnets" {
+  source = "../modules/eks_subnet"
+  for_each = var.eks_subnets
+  cidr        = each.value.cidr
+  subnet_name = each.key
+  subnet_zone = each.value.subnet_zone
+  vpc_id      = var.vpc_id
+}
+
+
+
 module "EKS_Cluster" {
   source = "../modules/eks"
   for_each = var.EKS
   eks_cluster_iam_role = each.value.iam_role_name
   eks_cluster_name     = each.key
   policy_arn           = var.eks_policy_arn
-  subnet_ids           = each.value.subnets
+  subnet_ids           = [module.EKS_Subnets[each.value.subnets].eks_subnet_id]
 }
