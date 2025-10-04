@@ -54,11 +54,11 @@ roboshop_frontend_instances = {
 
 eks_subnets = {
     eks-subnet-1 = {
-      cidr = "15.0.2.0/24"
+      cidr = "14.0.3.0/24"
       subnet_zone = "us-east-1d"
   }
     eks-subnet-2 = {
-      cidr = "16.0.2.0/24"
+      cidr = "14.0.4.0/24"
       subnet_zone = "us-east-1c"
   }
 }
