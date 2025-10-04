@@ -127,3 +127,17 @@ module "db_provisioner" {
 #   username = data.vault_kv_secret_v2.credentials.data["username"]
 #   vault_token = var.vault_token
 # }
+
+#=================================#
+#       EKS Kubernete Cluster     #
+#=================================#
+
+module "EKS_Cluster" {
+  source = "../modules/eks"
+  for_each = var.EKS
+  eks_cluster_iam_role = each.value.iam_role_name
+  eks_cluster_name     = each.key
+  policy_arn           = each.value.policy_arn
+  subnet_ids           = each.value.subnets
+}
+

@@ -50,3 +50,17 @@ roboshop_frontend_instances = {
     instance_type = "t2.micro"
   }
 }
+
+EKS = {
+  Roboshop_eks_cluster = {
+    iam_role_name = "eks_iam_role"
+    policy_arn = ["arn:aws:iam::aws:policy/AmazonEKSClusterPolicy",
+                  "arn:aws:iam::aws:policy/AmazonEKSWorkerNodeMinimalPolicy",
+                  "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryPullOnly",
+                  "arn:aws:iam::aws:policy/AmazonEKSComputePolicy",
+                  "arn:aws:iam::aws:policy/AmazonEKSBlockStoragePolicy",
+                  "arn:aws:iam::aws:policy/AmazonEKSLoadBalancingPolicy",
+                  "arn:aws:iam::aws:policy/AmazonEKSNetworkingPolicy"]
+    subnets = ["subnet-0a745d094a7bd3915", "subnet-0c6bb7036857981d6"]
+  }
+}

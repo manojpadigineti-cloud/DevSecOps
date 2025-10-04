@@ -26,3 +26,11 @@ variable "roboshop_frontend_instances" {
     instance_type = string
   }))
 }
+
+variable "EKS" {
+  type = map(object({
+    iam_role_name = string
+    policy_arn = list(string)
+    subnets = list(string)
+  }))
+}
