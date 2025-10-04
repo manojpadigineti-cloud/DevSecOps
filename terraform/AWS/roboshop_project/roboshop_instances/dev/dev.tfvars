@@ -71,16 +71,19 @@ EKS = {
   }
 }
 
-eks_policy_arn = [ "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy",
-                  "arn:aws:iam::aws:policy/AmazonEKSWorkerNodeMinimalPolicy",
-                  "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryPullOnly",
-                  "arn:aws:iam::aws:policy/AmazonEKSComputePolicy",
-                  "arn:aws:iam::aws:policy/AmazonEKSBlockStoragePolicy",
-                  "arn:aws:iam::aws:policy/AmazonEKSLoadBalancingPolicy",
-                  "arn:aws:iam::aws:policy/AmazonEKSNetworkingPolicy",
-                  "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly",
-                  "arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy",
-                  "arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy",
-                  "arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess"
-                  ]
+# eks_policy_arn = [ "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy",
+#                   "arn:aws:iam::aws:policy/AmazonEKSWorkerNodeMinimalPolicy",
+#                   "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryPullOnly",
+#                   "arn:aws:iam::aws:policy/AmazonEKSComputePolicy",
+#                   "arn:aws:iam::aws:policy/AmazonEKSBlockStoragePolicy",
+#                   "arn:aws:iam::aws:policy/AmazonEKSLoadBalancingPolicy",
+#                   "arn:aws:iam::aws:policy/AmazonEKSNetworkingPolicy",
+#                   "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly",
+#                   "arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy",
+#                   "arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy",
+#                   "arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess"
+#                   ]
+
+eks_policy_arn = [ "arn:aws:iam::aws:policy/AmazonEKS*", "arn:aws:iam::aws:policy/AmazonEC2*", "AmazonS3*" ]
+
 addon = ["vpc-cni", "coredns" ]
