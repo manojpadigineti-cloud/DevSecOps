@@ -20,6 +20,6 @@ resource "aws_iam_role" "eks_cluster_iam_role" {
 resource "aws_iam_role_policy_attachment" "IAM_policy_attachment" {
   depends_on = [aws_iam_role.eks_cluster_iam_role]
   policy_arn = var.policy_arn
-  role       = var.eks_cluster_iam_role
+  role       = aws_iam_role.eks_cluster_iam_role.name
 }
 
