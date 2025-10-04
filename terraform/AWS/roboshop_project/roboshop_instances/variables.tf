@@ -45,3 +45,8 @@ variable "EKS" {
     subnets = list(string)
   }))
 }
+
+variable "addon" {
+  type = object({
+  })
+}
