@@ -69,7 +69,7 @@ module "db_route53_records" {
   for_each = var.roboshop_db_instances
   source = "../modules/route53_record"
   record_name = each.key
-  route53_records = module.roboshop_db_instances[each.key].ec2_instance_output_public_ip
+  route53_records = module.roboshop_eip-db[each.key].eip_publicip
   zoneid = data.aws_route53_zone.route_53_zone.id
 }
 
