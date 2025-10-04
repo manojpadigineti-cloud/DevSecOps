@@ -1,4 +1,6 @@
 variable "eks_cluster_iam_role" {}
 variable "eks_cluster_name" {}
 variable "subnet_ids" {}
-variable "policy_arn" {}
+variable "policy_arn" {
+  type = list(string)
+}

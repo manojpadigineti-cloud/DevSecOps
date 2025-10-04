@@ -18,8 +18,8 @@ resource "aws_iam_role" "eks_cluster_iam_role" {
 }
 
 resource "aws_iam_role_policy_attachment" "IAM_policy_attachment" {
+  for_each = toset(var.policy_arn)
   depends_on = [aws_iam_role.eks_cluster_iam_role]
-  policy_arn = var.policy_arn
+  policy_arn = each.value
   role       = aws_iam_role.eks_cluster_iam_role.name
 }
-

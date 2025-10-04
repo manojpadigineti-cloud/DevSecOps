@@ -137,7 +137,6 @@ module "EKS_Cluster" {
   for_each = var.EKS
   eks_cluster_iam_role = each.value.iam_role_name
   eks_cluster_name     = each.key
-  policy_arn           = each.value.policy_arn
+  policy_arn           = var.eks_policy_arn
   subnet_ids           = each.value.subnets
 }
-
