@@ -1,8 +1,14 @@
-variable "eks_cluster_iam_role" {}
 variable "eks_cluster_name" {}
 variable "subnet_ids" {}
-variable "policy_arn" {
-  type = list(string)
-}
+# variable "iam_roles" {
+#   type = map(object({
+#     role_to_attach = string
+#   }))
+# }
 variable "nodegroup_name" {}
 variable "addon" {}
+variable "policy_roles" {
+  type = map(object({
+    policy_arn = list(string)
+  }))
+}

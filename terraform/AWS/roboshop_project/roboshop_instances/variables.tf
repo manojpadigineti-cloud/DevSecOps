@@ -41,8 +41,14 @@ variable "eks_subnets" {
 
 variable "EKS" {
   type = map(object({
-    iam_role_name = string
     subnets = list(string)
   }))
 }
 variable "addon" {}
+
+variable "policy_roles" {
+  type = map(object({
+    policy_arn = list(string)
+  }))
+}
+
