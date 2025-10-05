@@ -6,7 +6,7 @@ variable "addon" {}
 variable "policy_roles_1" {
   type = list(string)
   default =  [ "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy",
-                  "arn:aws:iam::aws:policy/AmazonEKSWorkerNodeMinimalPolicy",
+                  "arn:aws:iam::aws:policy/eks:DescribeCluster",
                   "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryPullOnly",
                   "arn:aws:iam::aws:policy/AmazonEKSComputePolicy",
                   "arn:aws:iam::aws:policy/AmazonEKSBlockStoragePolicy",

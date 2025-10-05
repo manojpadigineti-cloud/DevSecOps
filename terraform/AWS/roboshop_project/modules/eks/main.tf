@@ -46,15 +46,16 @@ resource "aws_eks_node_group" "node_group" {
 #     ADD-ON      #
 ###################
 
-resource "aws_eks_addon" "example" {
+resource "aws_eks_addon" "eks_addon" {
   for_each = toset(var.addon)
   cluster_name                = aws_eks_cluster.eks_cluster.name
   addon_name                  = each.key
-  addon_version               = "v1.10.1-eksbuild.1" #e.g., previous version v1.9.3-eksbuild.3 and the new version is v1.10.1-eksbuild.1
-  resolve_conflicts_on_update = "PRESERVE"
+  # addon_version               = "v1.10.1-eksbuild.1" #e.g., previous version v1.9.3-eksbuild.3 and the new version is v1.10.1-eksbuild.1
+  # resolve_conflicts_on_update = "PRESERVE"
 }
 
-resource "aws_eks_pod_identity_association" "example" {
+resource "aws_eks_pod_identity_association" "pod_identity" {
+  depends_on = [aws_eks_addon.eks_addon]
   cluster_name    = aws_eks_cluster.eks_cluster.name
   namespace       = "kube-system"
   service_account = "kube-sa"
