@@ -26,9 +26,6 @@ variable "roboshop_frontend_instances" {
     instance_type = string
   }))
 }
-variable "eks_policy_arn" {
-  type = list(string)
-}
 
 variable "vpc_id" {}
 
