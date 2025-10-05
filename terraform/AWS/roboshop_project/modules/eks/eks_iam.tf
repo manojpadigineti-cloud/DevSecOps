@@ -26,7 +26,7 @@ resource "aws_iam_role" "eks_pod_identity_role" {
       {
         Effect = "Allow"
         Principal = {
-          Service = "pods.eks.amazonaws.com"
+          Service = ["pods.eks.amazonaws.com"]
         }
         Action = "sts:AssumeRole"
       }
