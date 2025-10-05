@@ -74,6 +74,6 @@ resource "aws_eks_access_policy_association" "example" {
   principal_arn = "arn:aws:iam::260380093736:root"
 
   access_scope {
-      type = "all"  # Grants access to all namespaces and resources
+      type = "cluster"  # Grants access to all namespaces and resources
     }
 }
