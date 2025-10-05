@@ -10,7 +10,7 @@ resource "aws_eks_cluster" "eks_cluster" {
     bootstrap_cluster_creator_admin_permissions = true
   }
 
-  role_arn = aws_iam_role.eks_cluster_iam_role.arn
+  role_arn = aws_iam_role.eks_cluster_iam_role["policy_role1"].arn
   version  = "1.31"
 
   vpc_config {
