@@ -27,7 +27,7 @@ resource "aws_eks_cluster" "eks_cluster" {
 resource "aws_eks_node_group" "node_group" {
   cluster_name    = aws_eks_cluster.eks_cluster.name
   node_group_name = var.nodegroup_name
-  node_role_arn   = aws_iam_role.eks_cluster_iam_role["policy_role1"].arn
+  node_role_arn   = aws_iam_role.eks_cluster_iam_role["policy_role2"].arn
   subnet_ids      = var.subnet_ids
 
   scaling_config {
@@ -59,5 +59,5 @@ resource "aws_eks_pod_identity_association" "pod_identity" {
   cluster_name    = aws_eks_cluster.eks_cluster.name
   namespace       = "kube-system"
   service_account = "kube-sa"
-  role_arn        = aws_iam_role.eks_cluster_iam_role["policy_role1"].arn
+  role_arn        = aws_iam_role.eks_pod_identity_role.name
 }

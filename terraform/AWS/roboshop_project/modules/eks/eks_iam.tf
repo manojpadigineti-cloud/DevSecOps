@@ -11,11 +11,33 @@ resource "aws_iam_role" "eks_cluster_iam_role" {
         ]
         Effect = "Allow"
         Principal = {
-          Service = [ "eks.amazonaws.com", "ec2.amazonaws.com", "pods.eks.amazonaws.com" ]
+          Service = [ "eks.amazonaws.com", "ec2.amazonaws.com" ]
         }
       },
     ]
   })
+}
+
+resource "aws_iam_role" "eks_pod_identity_role" {
+  name = "roboshop-pod-role"
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Effect = "Allow"
+        Principal = {
+          Service = "pods.eks.amazonaws.com"
+        }
+        Action = "sts:AssumeRole"
+      }
+    ]
+  })
+}
+
+# Attach policies needed by that pod
+resource "aws_iam_role_policy_attachment" "pod_policy" {
+  role       = aws_iam_role.eks_pod_identity_role.name
+  policy_arn = "arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess"
 }
 
 resource "aws_iam_role_policy_attachment" "IAM_policy_attachment" {

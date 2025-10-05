@@ -93,4 +93,10 @@ policy_roles = {
   }
 }
 
-attach_policy_role = ["arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess"]
+attach_policy_role = [  "arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess",
+                        "arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy",
+                        "arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy",
+                        "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly",
+                        "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore",
+                        "arn:aws:iam::aws:policy/CloudWatchAgentServerPolicy"
+                      ]
