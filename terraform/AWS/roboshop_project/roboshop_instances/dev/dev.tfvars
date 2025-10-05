@@ -82,7 +82,7 @@ EKS = {
 #                   "arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy"
 #                   ]
 
-addon = ["vpc-cni", "coredns" ]
+addon = ["vpc-cni" ]
 
 policy_roles = {
   policy_role1 = {
