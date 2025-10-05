@@ -140,7 +140,7 @@ module "EKS_Subnets" {
   subnet_zone = each.value.subnet_zone
   vpc_id      = var.vpc_id
   routetable_id = var.routetable_id
-  subnet_associate = each.key
+  subnet_associate = var.eks_subnets
 }
 
 
