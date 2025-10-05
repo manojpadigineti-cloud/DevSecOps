@@ -65,5 +65,5 @@ resource "aws_eks_pod_identity_association" "pod_identity" {
 
 resource "aws_eks_access_entry" "example" {
   cluster_name      = aws_eks_cluster.eks_cluster.name
-  principal_arn     =  aws_iam_role.eks_cluster_iam_role["policy_role1"].arn
+  principal_arn     =  "arn:aws:iam::260380093736:root"
 }
