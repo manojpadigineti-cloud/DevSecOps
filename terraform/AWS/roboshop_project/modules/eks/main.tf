@@ -60,7 +60,7 @@ resource "aws_eks_pod_identity_association" "pod_identity" {
   cluster_name    = aws_eks_cluster.eks_cluster.name
   namespace       = "kube-system"
   service_account = "pod-serviceaccount"
-  role_arn        = aws_iam_role.eks_pod_identity_role.name
+  role_arn        = aws_iam_role.eks_pod_identity_role.arn
 }
 
 resource "aws_eks_access_entry" "example" {
