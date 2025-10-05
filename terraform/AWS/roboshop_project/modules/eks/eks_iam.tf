@@ -21,17 +21,21 @@ resource "aws_iam_role" "eks_cluster_iam_role" {
 resource "aws_iam_role" "eks_pod_identity_role" {
   name = "roboshop-pod-role"
   assume_role_policy = jsonencode({
-    Version = "2012-10-17"
-    Statement = [
-      {
-        Effect = "Allow"
-        Principal = {
-          Service = ["pods.eks.amazonaws.com"]
-        }
-        Action = "sts:AssumeRole"
-      }
-    ]
-  })
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": {
+        "Service": "pods.eks.amazonaws.com"
+      },
+      "Action": [
+        "sts:AssumeRole",
+        "sts:TagSession"
+      ]
+    }
+  ]
+}
+)
 }
 
 # Attach policies needed by that pod
