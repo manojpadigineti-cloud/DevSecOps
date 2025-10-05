@@ -72,4 +72,8 @@ resource "aws_eks_access_policy_association" "example" {
   cluster_name  = aws_eks_cluster.eks_cluster.name
   policy_arn    = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSViewPolicy"
   principal_arn = "arn:aws:iam::260380093736:root"
+
+  access_scope {
+      type = "all"  # Grants access to all namespaces and resources
+    }
 }
