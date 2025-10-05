@@ -45,7 +45,11 @@ variable "addon" {}
 
 variable "policy_roles" {
   type = map(object({
-    policy_arn = list(string)
+     name = string
   }))
+}
+
+variable "attach_policy_role" {
+  type = list(string)
 }
 

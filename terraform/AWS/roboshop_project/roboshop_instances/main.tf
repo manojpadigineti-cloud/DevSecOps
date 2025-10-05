@@ -150,9 +150,11 @@ module "EKS_Cluster" {
   subnet_ids           = [for subnets in each.value.subnets: module.EKS_Subnets[subnets].eks_subnet_id]
   nodegroup_name = "${each.key}-nodegroup"
   addon = var.addon
-  policy_roles = var.policy_roles
+
   ## If any key is accepting list we can use this method, if a key is expecting only one value we can use toset method as above we applied for Ppolicy-arn
   # for subnets in each.value.subnets --> Loops the value in variable 1st- eks-subnet-1    2nd - eks-subnet-2
   # module.EKS_Subnets[subnets].eks_subnet_id  ---> filters the required value from EKS_Subnets module and get its id from output
 
+   roles            = var.policy_roles
+  policy_roles_2 = var.attach_policy_role
 }

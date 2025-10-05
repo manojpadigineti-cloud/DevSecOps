@@ -66,7 +66,6 @@ eks_subnets = {
 
 EKS = {
   Roboshop_eks_cluster = {
-    iam_role_name = "eks_iam_role"
     subnets = ["eks-subnet-1", "eks-subnet-2" ]
   }
 }
@@ -86,19 +85,12 @@ EKS = {
 addon = ["vpc-cni", "coredns" ]
 
 policy_roles = {
-  eks_role1 = {
-    policy_arn = [ "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy",
-                  "arn:aws:iam::aws:policy/AmazonEKSWorkerNodeMinimalPolicy",
-                  "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryPullOnly",
-                  "arn:aws:iam::aws:policy/AmazonEKSComputePolicy",
-                  "arn:aws:iam::aws:policy/AmazonEKSBlockStoragePolicy",
-                  "arn:aws:iam::aws:policy/AmazonEKSLoadBalancingPolicy",
-                  "arn:aws:iam::aws:policy/AmazonEKSNetworkingPolicy",
-                  "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly",
-                  "arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy",
-                  "arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy" ]
+  policy_role1 = {
+    name = "role1"
   }
-  eks_role2 = {
-  policy_arn = ["arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess" ]
+  policy_role2 = {
+    name = "role2"
   }
 }
+
+attach_policy_role = ["arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess"]

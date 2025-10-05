@@ -1,5 +1,5 @@
 resource "aws_iam_role" "eks_cluster_iam_role" {
-  for_each = var.policy_roles
+  for_each = var.roles
   name = each.key
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
@@ -19,9 +19,15 @@ resource "aws_iam_role" "eks_cluster_iam_role" {
 }
 
 resource "aws_iam_role_policy_attachment" "IAM_policy_attachment" {
-  for_each = toset(var.policy_roles)
+  for_each = toset(var.policy_roles_1)
   depends_on = [aws_iam_role.eks_cluster_iam_role]
   policy_arn = each.value
-  role       = each.key
+  role       = aws_iam_role.eks_cluster_iam_role["policy_role1"].name
 }
 
+resource "aws_iam_role_policy_attachment" "IAM_policy_attachment2" {
+  for_each = toset(var.policy_roles_2)
+  depends_on = [aws_iam_role.eks_cluster_iam_role]
+  policy_arn = each.value
+  role       = aws_iam_role.eks_cluster_iam_role["policy_role2"].name
+}
