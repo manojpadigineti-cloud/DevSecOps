@@ -25,7 +25,7 @@ resource "aws_eks_cluster" "eks_cluster" {
 ###################
 
 resource "aws_eks_node_group" "node_group" {
-  depends_on = [aws_eks_cluster.eks_cluster, aws_eks_addon.eks_addon]
+  depends_on = [aws_eks_cluster.eks_cluster, aws_eks_pod_identity_association.pod_identity]
   cluster_name    = aws_eks_cluster.eks_cluster.name
   node_group_name = var.nodegroup_name
   node_role_arn   = aws_iam_role.eks_cluster_iam_role["policy_role2"].arn
@@ -56,7 +56,7 @@ resource "aws_eks_addon" "eks_addon" {
 }
 
 resource "aws_eks_pod_identity_association" "pod_identity" {
-  depends_on = [aws_eks_addon.eks_addon]
+  depends_on = [aws_iam_role_policy_attachment.pod_policy]
   cluster_name    = aws_eks_cluster.eks_cluster.name
   namespace       = "kube-system"
   service_account = aws_iam_role.eks_pod_identity_role.name

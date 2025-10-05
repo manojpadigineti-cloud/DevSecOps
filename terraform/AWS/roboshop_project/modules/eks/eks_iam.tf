@@ -36,6 +36,7 @@ resource "aws_iam_role" "eks_pod_identity_role" {
 
 # Attach policies needed by that pod
 resource "aws_iam_role_policy_attachment" "pod_policy" {
+  depends_on = [aws_iam_role.eks_pod_identity_role]
   role       = aws_iam_role.eks_pod_identity_role.name
   policy_arn = "arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess"
 }
