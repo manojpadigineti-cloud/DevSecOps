@@ -53,3 +53,4 @@ variable "attach_policy_role" {
   type = list(string)
 }
 
+variable "routetable_id" {}
