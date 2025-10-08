@@ -139,13 +139,13 @@ module "EKS_Subnets" {
   subnet_name = each.key
   subnet_zone = each.value.subnet_zone
   vpc_id      = var.vpc_id
-  routetable_id = var.routetable_id
-  subnet_associate = var.eks_subnets
+  IGW_id = var.IGW_id
 }
 
 
 
 module "EKS_Cluster" {
+  depends_on = [module.EKS_Subnets]
   source = "../modules/eks"
   for_each = var.EKS
   eks_cluster_name     = each.key

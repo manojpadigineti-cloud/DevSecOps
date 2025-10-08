@@ -7,7 +7,7 @@ vpc_id = "vpc-0bf351a4a107e2830"
 zone_name = "manojpadigineti.cloud"
 mount_path = "kv"
 secret_name = "credentials"
-routetable_id = "rtb-0e14b21385f5c91df"
+IGW_id = "igw-0a2755d9708146359"
 
 
 
