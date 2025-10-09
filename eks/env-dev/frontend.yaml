@@ -1,8 +1,8 @@
-{{- define "common_values" }}
+{{ define "common_values" }}
 appName: "frontend"
 project: "roboshop"
 releaseName: "{{ .Release.Name }}"
-{{- end }}
+{{ end }}
 
 {{- define "project" }}
 project: "roboshop"
