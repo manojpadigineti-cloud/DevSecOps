@@ -23,6 +23,6 @@ spec:
             - containerPort: {{ .Values.service.containerPort }}
           env:
           {{- range $key, $value := .Values.env }}
-          - name: {{ $key | indent 13 }}
-            value: "{{ $value | indent 13 }}"
+          - name: {{ $key }}
+            value: "{{ $value }}"
           {{- end }}
