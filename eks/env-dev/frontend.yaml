@@ -1,5 +1,5 @@
 {{- define "mychart.app" }}
-app: "frontend"
+ app: "frontend"
 {{- end }}
 {{- define "project" }}
  roboshop
