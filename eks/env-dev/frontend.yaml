@@ -1,12 +1,12 @@
-{{ define "common_values" }}
+{{ define "common_values" -}}
 appName: "frontend"
 project: "roboshop"
 releaseName: "{{ .Release.Name }}"
-{{ end }}
+{{ end -}}
 
-{{- define "project" }}
+{{ define "project" }}
 project: "roboshop"
-{{- end }}
+{{ end }}
 
 env:
  CATALOGUE_HOST: "catalogue"
