@@ -1,9 +1,9 @@
 {{- define "mychart.app" }}
-app: "frontend"
+  app: frontend
 {{- end }}
-{{- define "project" }}
+{{ define "project" }}
  roboshop
-{{- end }}
+{{ end }}
 appName: frontend
 image: public.ecr.aws/w8x4g9h7/roboshop-v3/frontend
 containerPort: 8080
