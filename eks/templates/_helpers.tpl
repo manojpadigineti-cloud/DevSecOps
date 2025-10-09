@@ -2,8 +2,8 @@
 appName: "{{ .Values.appName }}"
 project: "roboshop"
 releaseName: "{{ .Release.Name }}"
-{{- end }}
+{{ end -}}
 
 {{- define "project" }}
 project: "roboshop"
-{{- end }}
+{{ end -}}
