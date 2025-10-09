@@ -1,23 +1,8 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: v1
+kind: ConfigMap
 metadata:
-  name: {{ .Values.appName }}
-  namespace: {{ template "project" . }}
-  labels:
-    {{ template "mychart.app" . | indent 4 }}
-spec:
-  replicas: 2
-  selector:
-    matchLabels:
-      app: {{ .Values.appName }}
-  template:
-    metadata:
-      labels:
-        app: {{ .Values.appName }}
-    spec:
-      containers:
-        - name: {{ .Values.appName }}
-          image: {{ .Values.image }}
-          imagePullPolicy: Always
-          ports:
-            - containerPort: {{ .Values.containerPort }}
+  name: {{ .Release.Name }}-configmap
+data:
+  myvalue: "Hello World"
+  drink: {{ .Values.favorite.drink | repeat 5 | quote }}
+  food: {{ .Values.favorite.food | upper | quote }}
