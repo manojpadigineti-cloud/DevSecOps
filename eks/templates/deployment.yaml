@@ -4,7 +4,7 @@ metadata:
   name: {{ .Values.appName }}
   namespace: {{ template "project" . }}
   labels:
-    {{- template "mychart.app" . | nindent 4 }}
+    {{- template "mychart.app" . | indent 4 }}
 spec:
   replicas: 2
   selector:
