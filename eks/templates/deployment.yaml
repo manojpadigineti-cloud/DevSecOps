@@ -20,7 +20,7 @@ spec:
           image: {{ .Values.image}}
           imagePullPolicy: Always
           ports:
-            - containerPort: {{ .Values.service.containerPort }}
+            - containerPort: {{ .Values.containerPort }}
           env:
           {{- range $key, $value := .Values.env }}
           - name: {{ $key }}
