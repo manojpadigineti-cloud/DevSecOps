@@ -1,28 +1,9 @@
-{{ define "common_values" -}}
-appName: "frontend"
-project: "roboshop"
-releaseName: "{{ .Release.Name }}"
-{{ end -}}
-
-{{ define "project" }}
-project: "roboshop"
-{{ end }}
-
-env:
- CATALOGUE_HOST: "catalogue"
- CATALOGUE_PORT: "8080"
- USER_HOST : "user"
- USER_PORT : "8080"
- CART_HOST : "cart"
- CART_PORT : "8080"
- SHIPPING_HOST : "shipping"
- SHIPPING_PORT : "8080"
- PAYMENT_HOST : "payment"
- PAYMENT_PORT : "8080"
-
-
-
+{{- define "mychart.app" }}
+  app: frontend
+{{- end }}
+{{- define "project" }}
+ roboshop
+{{- end }}
+appName: frontend
+image: public.ecr.aws/w8x4g9h7/roboshop-v3/frontend
 containerPort: 8080
-type: ClusterIP
-servicePort: 80
-image: "public.ecr.aws/w8x4g9h7/roboshop-v3/frontend"
