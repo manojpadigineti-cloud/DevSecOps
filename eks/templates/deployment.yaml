@@ -8,4 +8,4 @@ data:
   food: {{ .Values.favorite.food | upper | quote }}
   {{ if eq .Values.favorite.drink "coffee" -}}
   mug: "true"
-  {{- end }}
+  {{ end }}
