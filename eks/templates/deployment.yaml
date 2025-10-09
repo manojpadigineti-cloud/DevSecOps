@@ -4,7 +4,7 @@ metadata:
   name: {{ .Values.appName }}
   namespace: {{ include "project" . }}
   labels:
-{{ include "mychart.app" . | indent 2 }}
+   {{ include "mychart.app" . }}
 spec:
   replicas: 2
   selector:
@@ -22,7 +22,7 @@ spec:
           ports:
             - containerPort: {{ .Values.containerPort }}
           env:
-          {{- range $key, $value := .Values.env }}
-          - name: {{ $key }}
-            value: {{ $value }}
-          {{- end }}
+            {{- range $key, $value := .Values.env }}
+            - name: {{ $key }}
+              value: {{ $value | quote }}
+              {{- end }}
