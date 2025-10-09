@@ -4,7 +4,7 @@ metadata:
   name: {{ .Values.appName}}
   namespace: {{ include "project" .}}
   labels:
-    {{ - include "common_values" . | indent 4 }}
+    {{ include "common_values" . | indent 4 }}
 spec:
   replicas: 2
   selector:
