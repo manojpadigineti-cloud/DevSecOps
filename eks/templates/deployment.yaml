@@ -1,10 +1,17 @@
+{{- define "mychart.app" }}
+  app: frontend
+{{- end }}
+{{- define "project" }}
+ roboshop
+{{- end }}
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ .Values.appName }}
   namespace: {{ template "project" }}
   labels:
-   {{ template "mychart.app" }}
+{{ template "mychart.app" }}
 spec:
   replicas: 2
   selector:
