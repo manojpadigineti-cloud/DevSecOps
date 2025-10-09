@@ -12,7 +12,7 @@
 
 appName: "frontend"
 service:
-  containerPort: 8080
-  type: ClusterIP
-  servicePort: 80
+  containerPort: "8080"
+  type: "ClusterIP"
+  servicePort: "80"
 image: "public.ecr.aws/w8x4g9h7/roboshop-v3/frontend"
