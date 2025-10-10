@@ -5,7 +5,7 @@ metadata:
   name: {{ .Values.appName }}
   namespace: roboshop
   labels:
-{{- template "mychart.app" }}
+{{- include "mychart.app" | indent 3 }}
 spec:
   replicas: 2
   selector:
@@ -22,3 +22,19 @@ spec:
           imagePullPolicy: Always
           ports:
             - containerPort: {{ .Values.containerPort }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.appName }}-service
+  namespace: roboshop
+  labels:
+    app: {{ .Values.appName }}
+spec:
+  selector:
+    app: {{ .Values.appName }}
+  ports:
+    - protocol: TCP
+      port: {{ .Values.target_port }}
+      targetPort: {{ .Values.containerPort }}
+  type: {{ .Values.service_type }}
