@@ -16,7 +16,7 @@ spec:
       labels:
         app: {{ .Values.appName }}
     spec:
-{{ - if .Values.initContainerEnabled }}
+{{- if .Values.initContainerEnabled }}
       initContainers:
         - name: db-init
           image: busybox
