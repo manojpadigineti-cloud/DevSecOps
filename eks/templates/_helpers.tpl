@@ -1,3 +1,3 @@
 {{- define "mychart.app" }}
-  app: frontend
+  app: {{ .Values.appName }}
 {{- end }}
