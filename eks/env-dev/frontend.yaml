@@ -1,7 +1,7 @@
 appName: frontend
 image: public.ecr.aws/w8x4g9h7/roboshop-v3/frontend
 target_port: 8080
-service_port: 80
+service_port: 8080
 containerPort: 8080
 service_type: LoadBalancer
 
