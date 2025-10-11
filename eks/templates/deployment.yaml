@@ -20,10 +20,10 @@ spec:
       initContainers:
 {{- include "init.cont" . | indent 6 }}
         env:
-        {{ range $key, $value := .Values.initenv -}}
+        {{- range $key, $value := .Values.initenv }}
          - name: {{ $key }}
            value: {{ $value | quote }}
-        {{- end }}
+        {{ end }}
 {{- end }}
       containers:
         - name: {{ .Values.appName }}
