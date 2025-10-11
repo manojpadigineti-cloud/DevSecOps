@@ -1,0 +1,13 @@
+appName: payment
+image: public.ecr.aws/w8x4g9h7/roboshop-v3/payment
+containerPort: 8080
+target_port: 8080
+service_type: ClusterIP
+
+env:
+  CART_HOST: cart-service
+  CART_PORT: 8080
+  USER_HOST: user-service
+  AMQP_HOST: rabbitmq.manojpadigineti.cloud
+  AMQP_USER: roboshop
+  AMQP_PASS: roboshop123
