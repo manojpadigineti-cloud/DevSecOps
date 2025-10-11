@@ -16,6 +16,16 @@ spec:
       labels:
         app: {{ .Values.appName }}
     spec:
+{{ - if .Values.initContainerEnabled }}
+      initContainers:
+        - name: db-init
+          image: busybox
+          env:
+          {{- range $key, $value := .Values.initenv}}
+           - name: {{ $key }}
+             value: {{ $value | quote }}
+          {{- end }}
+{{ - end }}
       containers:
         - name: {{ .Values.appName }}
           image: {{ .Values.image }}
@@ -41,5 +51,5 @@ spec:
   ports:
     - protocol: TCP
       port: {{ .Values.target_port }}
-      targetPort: {{ .Values.containerPort }}
+      targetPort: {{ .Values.service_port }}
   type: {{ .Values.service_type }}
