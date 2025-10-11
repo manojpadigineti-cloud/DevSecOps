@@ -7,5 +7,5 @@ service_type: ClusterIP
 
 env:
   CATALOGUE_HOST: catalogue
-  CATALOGUE_PORT: 8080
+  CATALOGUE_PORT: "8080"
   REDIS_HOST: "redis.manojpadigineti.cloud"
