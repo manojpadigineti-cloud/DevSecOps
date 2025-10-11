@@ -24,11 +24,11 @@ spec:
         env:
          - name: SCHEMA_FILE
            value: {{ .schema_file }}
-      {{- end }}
          {{- range $key, $value := .Values.initenv }}
          - name: {{ $key }}
            value: {{ $value | quote }}
          {{- end }}
+      {{- end }}
 {{- end }}
       containers:
         - name: {{ .Values.appName }}
