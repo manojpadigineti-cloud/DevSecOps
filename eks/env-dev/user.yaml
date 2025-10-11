@@ -1,0 +1,22 @@
+appName: user
+image: public.ecr.aws/w8x4g9h7/roboshop-v3/user
+containerPort: 8080
+target_port: 8080
+service_type: ClusterIP
+#initContainerEnabled: true
+#
+#initenv:
+#  DB_TYPE: mongo
+#  APP_GIT_URL: https://github.com/roboshop-devops-project-v3/catalogue
+#  DB_HOST: mongo-ip
+#  SCHEMA_FILE: db/master-data.js public.ecr.aws/w8x4g9h7/roboshop-v3/schema-load
+
+env:
+  MONGO: true
+  MONGO_URL: "mongodb://mongodb.manojpadigineti.cloud:27017/users"
+  REDIS_URL: "redis://redis.manojpadigineti.cloud:6379"
+
+
+
+
+
