@@ -1,10 +1,11 @@
+#git pull; helm install --dry-run deployment . -f env-dev/frontend.yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ .Values.appName }}
   namespace: roboshop
   labels:
-    {{ include "mychart.app" . | nindent 4 -}}
+{{- include "mychart.app" . | indent 4 }}
 spec:
   replicas: 2
   selector:
@@ -15,21 +16,20 @@ spec:
       labels:
         app: {{ .Values.appName }}
     spec:
-      {{- if .Values.initContainerEnabled }}
+{{- if .Values.initContainerEnabled }}
       initContainers:
-        {{- range .Values.init_cont_user_create }}
+{{- range .Values.init_cont_user_create }}
         - name: {{ .init_name }}
           image: {{ .image }}
           env:
             - name: SCHEMA_FILE
               value: {{ .schema_file }}
-            {{- range $key, $value := .initenv }}
+{{- range $key, $value := $.Values.initenv }}
             - name: {{ $key }}
               value: {{ $value | quote }}
-            {{- end }}
-        {{- end }}
-      {{- end }}
-
+{{- end }}
+{{- end }}
+{{- end }}
       containers:
         - name: {{ .Values.appName }}
           image: {{ .Values.image }}
@@ -37,10 +37,10 @@ spec:
           ports:
             - containerPort: {{ .Values.containerPort }}
           env:
-            {{- range $key, $value := .Values.env }}
+{{- range $key, $value := .Values.env }}
             - name: {{ $key }}
               value: {{ $value | quote }}
-            {{- end }}
+{{- end }}
 ---
 apiVersion: v1
 kind: Service
