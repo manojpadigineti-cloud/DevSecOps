@@ -18,12 +18,16 @@ spec:
     spec:
 {{- if .Values.initContainerEnabled }}
       initContainers:
-{{- include "init.cont" . | indent 6 }}
-      env:
-      {{- range $key, $value := .Values.initenv }}
-      - name: {{ $key }}
-        value: {{ $value | quote }}
-      {{- end }}
+      {{- range .Values.init_cont_user_create }}
+      - name: {{ .init_name }}
+        image: {{ .image }}
+        env:
+        {{- range $key, $value := .Values.initenv }}
+        - name: {{ $key }}
+          value: {{ $value | quote }}
+        {{- end }}
+          SCHEMA_FILE: {{ .schema_file }}
+        {{- end }}
 {{- end }}
       containers:
         - name: {{ .Values.appName }}
