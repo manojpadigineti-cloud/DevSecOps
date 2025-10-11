@@ -5,12 +5,16 @@ target_port: 8080
 service_type: ClusterIP
 initContainerEnabled: true
 
-initenv:
-  DB_TYPE: mongo
-  APP_GIT_URL: https://github.com/roboshop-devops-project-v3/catalogue
-  DB_HOST: mongo-ip
-  SCHEMA_FILE: db/master-data.js public.ecr.aws/w8x4g9h7/roboshop-v3/schema-load
-
 env:
   MONGO: true
   MONGO_URL: "mongodb://mongodb.manojpadigineti.cloud:27017/catalogue"
+
+init_cont_user_create:
+  - init_name: schema-load
+    image: public.ecr.aws/w8x4g9h7/roboshop-v3/schema-load
+    schema_file: db/master-data.js
+
+initenv:
+  DB_TYPE: mongo
+  APP_GIT_URL: https://github.com/roboshop-devops-project-v3/catalogue
+  DB_HOST: mongodb.manojpadigineti.cloud
