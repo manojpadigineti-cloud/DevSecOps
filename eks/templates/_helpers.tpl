@@ -4,6 +4,5 @@
 
 {{- define "init.cont" }}
  - name: {{ .Values.appName }}-init
-   image: {
-   { .Values.initimage }}
+   image: {{ .Values.initimage }}
  {{- end }}
