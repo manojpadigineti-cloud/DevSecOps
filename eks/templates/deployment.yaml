@@ -18,13 +18,12 @@ spec:
     spec:
 {{- if .Values.initContainerEnabled }}
       initContainers:
-        - name: db-init
-          image: busybox
-          env:
-          {{- range $key, $value := .Values.initenv}}
-           - name: {{ $key }}
-             value: {{ $value | quote }}
-          {{- end }}
+{{- include "init.cont" . | indent 7 }}
+        env:
+        {{- range $key, $value := .Values.initenv}}
+         - name: {{ $key }}
+           value: {{ $value | quote }}
+        {{- end }}
 {{- end }}
       containers:
         - name: {{ .Values.appName }}

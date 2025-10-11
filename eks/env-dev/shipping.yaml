@@ -1,0 +1,24 @@
+appName: shipping
+image: public.ecr.aws/w8x4g9h7/roboshop-v3/shipping
+containerPort: 8080
+target_port: 8080
+service_type: ClusterIP
+initContainerEnabled: true
+
+env:
+  CART_ENDPOINT: cart-service:8080
+  DB_HOST: mysql.manojpadigineti.cloud
+
+initimage: public.ecr.aws/w8x4g9h7/roboshop-v3/schema-load
+
+SCHEMA_FILE:
+  db/app-user.sql 
+  db/schema.sql
+  db/master-data.sql
+
+initenv:
+  DB_TYPE: mysql
+  APP_GIT_UR: https://github.com/roboshop-devops-project-v3/shipping
+  DB_HOST: mysql.manojpadigineti.cloud
+  DB_USER: root
+  DB_PASS: RoboShop@1
