@@ -6,9 +6,9 @@ target_port: 8080
 service_type: ClusterIP
 
 env:
-  CART_HOST: cart-service
+  CART_HOST: cart
   CART_PORT: 8080
-  USER_HOST: user-service
+  USER_HOST: user
   AMQP_HOST: rabbitmq.manojpadigineti.cloud
   AMQP_USER: roboshop
   AMQP_PASS: roboshop123
