@@ -22,11 +22,11 @@ spec:
       - name: {{ .init_name }}
         image: {{ .image }}
         env:
+        SCHEMA_FILE: {{ .schema_file }}
+      {{- end }}
         {{- range $key, $value := .Values.initenv }}
         - name: {{ $key }}
           value: {{ $value | quote }}
-        {{- end }}
-          SCHEMA_FILE: {{ .schema_file }}
         {{- end }}
 {{- end }}
       containers:
