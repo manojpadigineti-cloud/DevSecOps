@@ -4,7 +4,7 @@ metadata:
   name: {{ .Values.appName }}
   namespace: roboshop
   labels:
-    {{- include "mychart.app" . | nindent 4 -}}
+    {{ include "mychart.app" . | nindent 4 -}}
 spec:
   replicas: 2
   selector:
