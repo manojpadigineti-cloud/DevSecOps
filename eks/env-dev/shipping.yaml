@@ -22,7 +22,7 @@ init_cont_user_create:
 
 initenv:
   DB_TYPE: mysql
-  APP_GIT_UR: https://github.com/roboshop-devops-project-v3/shipping
+  APP_GIT_URL: https://github.com/roboshop-devops-project-v3/shipping
   DB_HOST: mysql.manojpadigineti.cloud
   DB_USER: root
   DB_PASS: RoboShop@1
