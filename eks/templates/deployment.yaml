@@ -19,9 +19,9 @@ spec:
 {{- if .Values.initContainerEnabled }}
       initContainers:
       {{- range .Values.init_cont_user_create }}
-       - name: {{ .init_name }}
-         image: {{ .image }}
-         env:
+        - name: {{ .init_name }}
+          image: {{ .image }}
+          env:
           - name: SCHEMA_FILE
             value: {{ .schema_file }}
 #        {{- range $key, $value := .Values.initenv }}
