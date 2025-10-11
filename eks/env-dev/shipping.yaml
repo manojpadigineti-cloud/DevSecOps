@@ -22,3 +22,7 @@ initenv:
   DB_HOST: mysql.manojpadigineti.cloud
   DB_USER: root
   DB_PASS: RoboShop@1
+  SCHEMA_FILE:
+   - db/app-user.sql
+   - db/schema.sql
+   - db/master-data.sql
