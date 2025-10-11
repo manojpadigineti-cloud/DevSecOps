@@ -23,7 +23,7 @@ spec:
         {{- range $key, $value := .Values.initenv }}
         - name: {{ $key }}
           value: {{ $value | quote }}
-        {{ end }}
+        {{- end }}
 {{- end }}
       containers:
         - name: {{ .Values.appName }}
