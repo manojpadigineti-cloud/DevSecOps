@@ -1,6 +1,6 @@
 appName: cart
 image: public.ecr.aws/w8x4g9h7/roboshop-v3/cart
-containerPort: 8080
+service_port: 8080
 target_port: 8080
 service_type: ClusterIP
 
