@@ -1,0 +1,10 @@
+appName: cart
+image: public.ecr.aws/w8x4g9h7/roboshop-v3/cart
+containerPort: 8080
+target_port: 8080
+service_type: ClusterIP
+
+env:
+  CATALOGUE_HOST: "catalogue-service"
+  CATALOGUE_PORT: 8080
+  REDIS_HOST: "redis.manojpadigineti.cloud"
