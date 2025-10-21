@@ -166,5 +166,5 @@ module "EKS_Cluster" {
 module "ECR_Registry" {
   for_each = var.ecr
   source = "../modules/ecr"
-  ecr_name = each.value
+  ecr_name = each.key
 }
