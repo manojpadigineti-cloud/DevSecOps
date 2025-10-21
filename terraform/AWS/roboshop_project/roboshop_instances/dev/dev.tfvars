@@ -102,4 +102,14 @@ attach_policy_role = [  "arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess",
                         "arn:aws:iam::aws:policy/CloudWatchAgentServerPolicy"
                       ]
 
-ecr = ["cart", "catalogue", "dispatch", "frontend", "payment", "shippping", "user"]
+# ecr = ["cart", "catalogue", "dispatch", "frontend", "payment", "shippping", "user"]
+
+ecr = {
+  cart = {}
+  catalogue = {}
+  dispatch = {}
+  frontend = {}
+  payment = {}
+  shippping = {}
+  user = {}
+}
