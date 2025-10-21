@@ -55,7 +55,7 @@ resource "aws_instance" "ec2" {
   vpc_security_group_ids = [var.security_group]
   iam_instance_profile = var.instance_profile
   root_block_device {
-    volume_size = "30"
+    volume_size = "50"
   }
   instance_market_options {
     market_type = "spot"
