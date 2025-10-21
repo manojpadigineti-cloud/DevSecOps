@@ -158,3 +158,13 @@ module "EKS_Cluster" {
   # for subnets in each.value.subnets --> Loops the value in variable 1st- eks-subnet-1    2nd - eks-subnet-2
   # module.EKS_Subnets[subnets].eks_subnet_id  ---> filters the required value from EKS_Subnets module and get its id from output
 }
+
+#==============================#
+#        ECR Registry          #
+#==============================#
+
+module "ECR_Registry" {
+  for_each = var.ecr
+  source = "../modules/ecr"
+  ecr_name = each.value
+}

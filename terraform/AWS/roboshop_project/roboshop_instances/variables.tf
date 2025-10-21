@@ -55,3 +55,7 @@ variable "attach_policy_role" {
 
 
 variable "IGW_id" {}
+
+variable "ecr" {
+  type = list(string)
+}

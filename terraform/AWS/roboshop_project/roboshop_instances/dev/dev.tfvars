@@ -83,7 +83,7 @@ EKS = {
 #                   "arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy"
 #                   ]
 
-addon = [ "vpc-cni", "kube-proxy" ]
+addon = [ "vpc-cni", "kube-proxy", "eks-pod-identity-agent" ]
 
 policy_roles = {
   policy_role1 = {
@@ -101,3 +101,5 @@ attach_policy_role = [  "arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess",
                         "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore",
                         "arn:aws:iam::aws:policy/CloudWatchAgentServerPolicy"
                       ]
+
+ecr = ["cart", "catalogue", "dispatch", "frontend", "payment", "shippping", "user"]
