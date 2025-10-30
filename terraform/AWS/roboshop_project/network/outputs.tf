@@ -17,4 +17,3 @@ output "subnets_id" {
 # output "all_sg_ids" {
 #   value = [for i in module.sg : i.sg_id]
 # }
-
