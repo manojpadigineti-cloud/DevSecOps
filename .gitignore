@@ -12,3 +12,5 @@ versions.tf
 *version
 *.versi
 versi*
+/terraform/AWS/packer/ec2_ami/id_rsa
+/terraform/AWS/packer/ec2_ami/id_rsa.pub
